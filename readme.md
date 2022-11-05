@@ -2,8 +2,6 @@
 
 This app uses a Netlify identity user to sign up, log in, and securely read and write data scoped to their user in a private Sanity datastore. 
 
-![screenshot](/images/better_screenshot_2.png)
-
 ## Outline of how it works
 
 ### Signing Up 
