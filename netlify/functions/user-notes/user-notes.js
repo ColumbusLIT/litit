@@ -38,7 +38,7 @@ const handler = async (event, context) => {
   }
 
   try {
-    const query = `*[_type == "note" && references("${uId}")]{title, _updatedAt, _id}`
+    const query = `*[_type == "note" && references("${uId}")]{title, content, image, domain, preset, status, dateFrom, dateTo, user, _updatedAt, _id}`
 
     let notes
 
@@ -46,8 +46,16 @@ const handler = async (event, context) => {
       notes = r.map((n) => {
         return { 
           title: n.title, 
+          content: n.content,
+          image: n.image,
+          domain: n.domain,
+          preset: n.preset,
+          status: n.status,
+          dateFrom: n.dateFrom,
+          dateTo: n.dateTo,
+          user: n.user,
           updated: n._updatedAt, 
-          id: n._id 
+          id: n._id, 
         }
       })
     })
