@@ -37,6 +37,7 @@ const handler = async function (event) {
     _type: 'webUser',
     email: user.email,
     fullName: user.user_metadata.full_name,
+    domain: "litit-demo.netlify.app"
   }
 
   try {
