@@ -1,11 +1,17 @@
 /* litit Notification Box */
-.litit.default {
+
+.litit.litit-preset--default {
   padding: 1rem;
 }
-.litit-title.default {
+.litit-preset--default .litit-title {
   margin: 0;
+  margin-bottom: 1rem;
 }
-.litit-content.default {
+.litit-preset--default .litit-content {
   margin: 0;
   font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+.litit-preset--default .litit-updated { 
+    font-size: 0.8rem;
 }
