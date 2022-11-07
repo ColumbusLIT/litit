@@ -48,7 +48,7 @@ const handler = async (event, context) => {
   }
 
   try {
-    const query = `*[_type == "note" && _id == "${id}"]{title, content, image, domain, preset, status, dateFrom, dateTo, user, _updatedAt, _id}`;
+    const query = `*[_id == "${id}"]{title, content, image, domain, preset, status, dateFrom, dateTo, user, _updatedAt, _id}`;
 
     let notes;
 
