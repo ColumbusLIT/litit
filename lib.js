@@ -160,7 +160,7 @@ async function getNote(e) {
         return response.json();
       })
       .then((data) => {
-        //console.log(data)
+        console.log(data)
         renderNotes(data);
       })
       .catch((e) => {
