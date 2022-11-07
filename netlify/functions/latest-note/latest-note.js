@@ -36,6 +36,8 @@ const handler = async (event, context) => {
       });
     });
 
+    console.log(notes)
+
     return {
       statusCode: 200,
       headers: {
