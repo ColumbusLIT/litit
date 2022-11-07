@@ -2,7 +2,7 @@ const titleField = document.getElementById("title");
 const contentField = document.getElementById("content");
 const presetField = document.getElementById("preset");
 const statusField = document.getElementById("status");
-const notesContainer = notesContainer;
+const notesContainer = document.getElementById("notes");
 /**
  * Renders notes in the DOM.
  * @param {Array} arr  array of note objects
