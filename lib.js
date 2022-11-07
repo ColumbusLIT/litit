@@ -7,7 +7,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   notesContainer = document.getElementById("notes");
 });
 
-const FUNCTIONS = "https://litit.netlify.app/.netlify/functions";
+const FUNCTIONS = "/.netlify/functions";
 
 /**
  * Renders notes in the DOM.
