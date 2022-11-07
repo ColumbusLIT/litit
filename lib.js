@@ -13,12 +13,18 @@ function renderNotes(arr) {
     let newItem = document.createElement("li");
     newItem.id = obj.id;
 
-    let newButton = document.createElement("button");
-    newButton.addEventListener("click", deleteNote);
-    newButton.innerHTML = "&times";
-    newButton.setAttribute("data-delete-id", obj.id);
+    let deleteButton = document.createElement("button");
+    deleteButton.addEventListener("click", deleteNote);
+    deleteButton.innerHTML = "Delete";
+    deleteButton.setAttribute("data-delete-id", obj.id);
+    newItem.appendChild(deleteButton);
 
-    newItem.appendChild(newButton);
+    let editButton = document.createElement("button");
+    editButton.addEventListener("click", getNote);
+    editButton.innerHTML = "Edit";
+    editButton.setAttribute("data-edit-id", obj.id);
+    newItem.appendChild(editButton);
+
     newItem.appendChild(document.createTextNode(obj.title));
 
     document.getElementById("notes").appendChild(newItem);
@@ -115,13 +121,13 @@ async function deleteNote(e) {
   }
 }
 
-async function updateUserNote(e) {
+async function getNote(e) {
   showAnimation(e);
 
-  const deleteMe = e.target.dataset.deleteId;
+  const id = e.target.dataset.editId;
 
   if (netlifyIdentity.currentUser() !== null) {
-    await fetch(`/.netlify/functions/delete-note?id=${deleteMe}`, {
+    await fetch(`/.netlify/functions/note?id=${id}`, {
       headers: {
         Authorization: `Bearer ${theToken()}`,
       },
@@ -129,6 +135,31 @@ async function updateUserNote(e) {
       removeAnimation();
 
       if (r.ok) {
+        // TODO: 
+      }
+      if (!r.ok) {
+        alert("Something is messed up. You could try logging out and back in.");
+      }
+    });
+  }
+}
+
+async function updateNote(e) {
+  showAnimation(e);
+
+  const id = e.target.dataset.deleteId;
+
+  if (netlifyIdentity.currentUser() !== null) {
+    // TODO: Add data
+    await fetch(`/.netlify/functions/update-note?id=${id}`, {
+      headers: {
+        Authorization: `Bearer ${theToken()}`,
+      },
+    }).then((r) => {
+      removeAnimation();
+
+      if (r.ok) {
+        // TODO: Clear 
         getAndRenderNotes();
       }
       if (!r.ok) {
