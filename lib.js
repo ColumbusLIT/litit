@@ -1,11 +1,15 @@
+const titleField = document.getElementById("title");
+const contentField = document.getElementById("content");
+const presetField = document.getElementById("preset");
+const statusField = document.getElementById("status");
+const notesContainer = notesContainer;
 /**
  * Renders notes in the DOM.
  * @param {Array} arr  array of note objects
  * promised by fetch in {@function netlify/functions/notes}
  */
-
 function renderNotes(arr) {
-  document.getElementById("notes").innerHTML = "";
+  notesContainer.innerHTML = "";
 
   let notes = arr.filter((n) => n.title.length > 0);
 
@@ -27,7 +31,7 @@ function renderNotes(arr) {
 
     newItem.appendChild(document.createTextNode(obj.title));
 
-    document.getElementById("notes").appendChild(newItem);
+    notesContainer.appendChild(newItem);
   });
 }
 
@@ -41,8 +45,8 @@ async function createNote() {
   showAnimation();
 
   let params = {
-    title: document.getElementById("title").value.replace(/[^\w\s!?]/g, ""),
-    content: document.getElementById("content").value.replace(/[^\w\s!?]/g, ""),
+    title: titleField.value.replace(/[^\w\s!?]/g, ""),
+    content: contentField.value.replace(/[^\w\s!?]/g, ""),
     domain: "litit-demo.netlify.app",
     preset: "default",
     status: "published",
@@ -71,8 +75,8 @@ async function createNote() {
     });
   }
 
-  document.getElementById("title").value = "";
-  document.getElementById("content").value = "";
+  titleField.value = "";
+  contentField.value = "";
 }
 
 /**
@@ -96,6 +100,13 @@ async function getAndRenderNotes() {
         renderNotes(data);
       });
   }
+}
+
+function fillForm(note) {
+  titleField.value = note.title;
+  contentField.value = note.content;
+  presetField.value = note.preset;
+  statusField.value = note.status;
 }
 
 async function deleteNote(e) {
@@ -135,7 +146,8 @@ async function getNote(e) {
       removeAnimation();
 
       if (r.ok) {
-        // TODO: 
+        // TODO:
+        fillForm();
       }
       if (!r.ok) {
         alert("Something is messed up. You could try logging out and back in.");
@@ -159,7 +171,7 @@ async function updateNote(e) {
       removeAnimation();
 
       if (r.ok) {
-        // TODO: Clear 
+        // TODO: Clear
         getAndRenderNotes();
       }
       if (!r.ok) {
