@@ -38,12 +38,18 @@ const handler = async (event, context) => {
 
     return {
       statusCode: 200,
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "access-control-allow-origin": "*",
+      },
       body: JSON.stringify(notes),
     };
   } catch (error) {
     return {
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "access-control-allow-origin": "*",
+      },
       statusCode: 500,
       body:
         error.responseBody || JSON.stringify({ error: "An error occurred" }),
