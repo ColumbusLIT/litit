@@ -1,7 +1,7 @@
 /**
  * Renders notes in the DOM.
  * @param {Array} arr  array of note objects
- * promised by fetch in {@function netlify/functions/user-notes}
+ * promised by fetch in {@function netlify/functions/notes}
  */
 
 function renderNotes(arr) {
@@ -78,12 +78,12 @@ async function createNote() {
 /**
  * Orders the getting and rendering
  * of the users notes by calling
- * {@function netlify/functions/user-notes} and
+ * {@function netlify/functions/notes} and
  * passes result to {@function renderNotes}
  */
 async function getAndRenderNotes() {
   if (netlifyIdentity.currentUser() !== null) {
-    await fetch(`/.netlify/functions/user-notes`, {
+    await fetch(`/.netlify/functions/notes`, {
       headers: {
         Authorization: `Bearer ${theToken()}`,
       },
