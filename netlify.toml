@@ -11,6 +11,14 @@
   #  to = "/index.html"
   #  status = 200
 
+  ## HTTPS headers from cross domain access
+  [[headers]]
+    for = "/*"
+    [headers.values]
+      X-Frame-Options = "ALLOW"
+      X-XSS-Protection = "0"
+      Access-Control-Allow-Origin = "*"
+
   ## (optional) Settings for Netlify Dev
   ## https://github.com/netlify/cli/blob/main/docs/netlify-dev.md#project-detection
   #[dev]
