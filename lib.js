@@ -103,9 +103,6 @@ async function getAndRenderNotes() {
         //console.log(data)
         renderNotes(data);
       })
-      .catch((e) => {
-        alert("Something is messed up. You could try logging out and back in.");
-      });
   }
 }
 
@@ -139,9 +136,6 @@ async function deleteNote(e) {
           );
         }
       })
-      .catch((e) => {
-        alert("Something is messed up. You could try logging out and back in.");
-      });
   }
 }
 
@@ -163,9 +157,6 @@ async function getNote(e) {
         console.log(data)
         renderNotes(data);
       })
-      .catch((e) => {
-        alert("Something is messed up. You could try logging out and back in.");
-      });
   }
 }
 
