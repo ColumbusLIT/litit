@@ -12,9 +12,17 @@ const client = sanityClient({
 
 const handler = async (event, context) => {
 
-  const noteText = event.queryStringParameters.note
+  const title = event.queryStringParameters.title
+  const content = event.queryStringParameters.content
+  const domain = event.queryStringParameters.domain
+  const preset = event.queryStringParameters.preset
+  const status = event.queryStringParameters.status
+  const dateFrom = event.queryStringParameters.dateFrom
+  const dateTo = event.queryStringParameters.dateTo
+
   const uId = context.clientContext.user.sub
   const uRoles = context.clientContext.user.app_metadata.roles
+
 
   /* no user, no go */
   if (!uId) {
@@ -40,7 +48,15 @@ const handler = async (event, context) => {
 
   const newNote = {
     _type: 'note',
-    title: noteText,
+    title: title,
+    content: content,
+    // image: image,
+    domain: "litit-demo.netlify.app",
+    // preset: preset,
+    // status: status,
+    // dateFrom: dateFrom,
+    // dateTo: dateTo,
+    
     belongsTo: {
       _type: 'reference',
       _ref: uId

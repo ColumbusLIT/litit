@@ -1,50 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>LIT IT - Health Care Solutions</title>
-  <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
-  <link rel="stylesheet" href="style.css">
-  <script src="lib.js"></script>
-</head>
-<body class="logged-out">
-  <div class="app">
-    
-    <div class="grid">
-      <div class="box">
-        <img class="logo" src="images/litit.png" alt="icon">
-        <h2>Login or register</h2>
-        <div class="data-netlify" data-netlify-identity-menu></div>
-      </div>
+  <head>
+    <title>LIT IT - Health Care Solutions</title>
+    <script
+      type="text/javascript"
+      src="https://identity.netlify.com/v1/netlify-identity-widget.js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="lib.js"></script>
+  </head>
+  <body class="logged-out">
+    <div class="notification">
+      <span
+        >Save 10% when you sign up in the next 24 hours.</span
+      >
+    </div>
 
-      <div class="sanity box">
-        
-        <h2 class="sanity-title">Keep your patience informed</h2>
-        
-        <div class="sanity-no-go">
+    <header>
+      <div>
+        <a class="page-title" href="/"
+          ><img class="logo" src="images/litit.png" alt="icon"
+        /></a>
+        <nav class="menu">
+          <a href="#HowItWorks" class="active">How it works</a>
+        </nav>
+        <div class="badge">
+          <div class="data-netlify" data-netlify-identity-menu></div>
+        </div>
+      </div>
+    </header>
+
+    <main class="app">
+      <section class="hero sanity-no-go">
+        <div>
+          <h1>When doctors become patients, we let your patience know.</h1>
+          <p>Real-time notifications on your website</p>
+          <button>GET STARTED</button>
+        </div>
+        <div>
+          <img src="images/illustration.png" alt="We care" />
+        </div>
+      </section>
+
+      <!-- <div class="sanity-no-go">
           <div>
-            <em style="color:silver">login on the left to access your data</em>
+            <em style="color: silver">login on the left to access your data</em>
           </div>
-        </div>
+        </div> -->
 
-        <div class="sanity-operations">
-          <input type="text" id="new-note" maxlength="40">
-          <button onclick="createUserNote()">add note</button>
-          <ul id="notes">
-            <!-- notes get rendered here -->
-          </ul>
-        </div>
-      </div>
+      <section class="sanity-operations form">
+        <label>
+          <!-- <span>Title</span> -->
+          <input type="text" id="title" maxlength="40" value="Praxis update" placeholder="Title"/>
+        </label>
+        <label>
+          <!-- <span>Content</span> -->
+          <textarea id="content" rows="6"></textarea>
+        </label>
+        <label>
+          <span>Preset</span>
+          <select id="preset">
+            <option value="default">Default</option>
+            <option value="unstyled">Unstyled</option>
+          </select>
+        </label>
+        <label>
+          <span>Status</span>
+          <select id="status">
+            <option value="published" selected>Published</option>
+            <option value="draft">Draft</option>
+            <option value="archived">Archived</option>
+          </select>
+        </label>
+        <button onclick="createUserNote()">PUBLISH</button>
+        <ul id="notes">
+          <!-- notes get rendered here -->
+        </ul>
+      </section>
+    </main>
 
-      
-    </div>
     <div id="animation">
-      <img src="images/hourglass-solid.svg" alt="">
+      <img src="images/hourglass-solid.svg" alt="" />
     </div>
+
     <footer>
       <div>&copy; 2022 LIT IT</div>
     </footer>
-  </div>
-  
-</body>
+  </body>
 </html>
