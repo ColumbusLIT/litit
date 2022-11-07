@@ -7,6 +7,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
   notesContainer = document.getElementById("notes");
 });
 
+const FUNCTIONS = "https://litit.netlify.app/.netlify/functions";
+
 /**
  * Renders notes in the DOM.
  * @param {Array} arr  array of note objects
@@ -63,7 +65,7 @@ async function createNote() {
     .join("&");
 
   if (netlifyIdentity.currentUser() !== null) {
-    await fetch(`/.netlify/functions/create-note?${queryString}`, {
+    await fetch(`${FUNCTIONS}/create-note?${queryString}`, {
       headers: {
         Authorization: `Bearer ${theToken()}`,
       },
@@ -91,7 +93,7 @@ async function createNote() {
  */
 async function getAndRenderNotes() {
   if (netlifyIdentity.currentUser() !== null) {
-    await fetch(`/.netlify/functions/notes`, {
+    await fetch(`${FUNCTIONS}/notes`, {
       headers: {
         Authorization: `Bearer ${theToken()}`,
       },
@@ -102,7 +104,7 @@ async function getAndRenderNotes() {
       .then((data) => {
         //console.log(data)
         renderNotes(data);
-      })
+      });
   }
 }
 
@@ -119,23 +121,20 @@ async function deleteNote(e) {
   const id = e.target.dataset.deleteId;
 
   if (netlifyIdentity.currentUser() !== null) {
-    await fetch(`/.netlify/functions/delete-note?id=${id}`, {
+    await fetch(`${FUNCTIONS}/delete-note?id=${id}`, {
       headers: {
         Authorization: `Bearer ${theToken()}`,
       },
-    })
-      .then((r) => {
-        removeAnimation();
+    }).then((r) => {
+      removeAnimation();
 
-        if (r.ok) {
-          getAndRenderNotes();
-        }
-        if (!r.ok) {
-          alert(
-            "Something is messed up. You could try logging out and back in."
-          );
-        }
-      })
+      if (r.ok) {
+        getAndRenderNotes();
+      }
+      if (!r.ok) {
+        alert("Something is messed up. You could try logging out and back in.");
+      }
+    });
   }
 }
 
@@ -145,7 +144,7 @@ async function getNote(e) {
   const id = e.target.dataset.editId;
 
   if (netlifyIdentity.currentUser() !== null) {
-    await fetch(`/.netlify/functions/note?id=${id}`, {
+    await fetch(`${FUNCTIONS}/note?id=${id}`, {
       headers: {
         Authorization: `Bearer ${theToken()}`,
       },
@@ -154,10 +153,10 @@ async function getNote(e) {
         return response.json();
       })
       .then((data) => {
-        console.log(data)
+        console.log(data);
         fillForm(data);
         removeAnimation();
-      })
+      });
   }
 }
 
@@ -168,7 +167,7 @@ async function updateNote(e) {
 
   if (netlifyIdentity.currentUser() !== null) {
     // TODO: Add data
-    await fetch(`/.netlify/functions/update-note?id=${id}`, {
+    await fetch(`${FUNCTIONS}/update-note?id=${id}`, {
       headers: {
         Authorization: `Bearer ${theToken()}`,
       },
