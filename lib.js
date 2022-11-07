@@ -187,9 +187,21 @@ async function updateNote(e) {
   }
 }
 
-async function setDomain(id) {
+function theUserId() {
+  if (netlifyIdentity.currentUser() !== null) {
+    const localUser = JSON.parse(localStorage.getItem("gotrue.user"));
+    return localUser.id;
+  } else {
+    return false;
+  }
+}
+
+
+async function setDomain() {
   showAnimation(e);
 
+  const id = theUserId();
+  
   if (netlifyIdentity.currentUser() !== null) {
     await fetch(`${FUNCTIONS}/domain?id=${id}`, {
       headers: {
@@ -233,8 +245,8 @@ window.netlifyIdentity.on("login", (u) => {
   console.log("logging in a user, giving them a token, here they are: ");
   console.log(u);
   applyBodyClass("logged-in");
-  getAndRenderNotes();
-  setDomain(u.id);
+  getAndRenderNotes(); // TODO only show after domain is set
+  setDomain();
 });
 
 window.netlifyIdentity.on("logout", () => {
