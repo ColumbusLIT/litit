@@ -14,7 +14,7 @@ function renderNotes(arr) {
     newItem.id = obj.id;
 
     let newButton = document.createElement("button");
-    newButton.addEventListener("click", deleteUserNote);
+    newButton.addEventListener("click", deleteNote);
     newButton.innerHTML = "&times";
     newButton.setAttribute("data-delete-id", obj.id);
 
@@ -31,7 +31,7 @@ function renderNotes(arr) {
  * If ok calls {@function renderNotes} otherwise alerts error
  * Zeros out DOM input
  */
-async function createUserNote() {
+async function createNote() {
   showAnimation();
 
   let params = {
@@ -57,7 +57,7 @@ async function createUserNote() {
       removeAnimation();
 
       if (r.ok) {
-        getAndRenderUserNotes();
+        getAndRenderNotes();
       }
       if (!r.ok) {
         alert("Something is messed up. You could try logging out and back in.");
@@ -75,7 +75,7 @@ async function createUserNote() {
  * {@function netlify/functions/user-notes} and
  * passes result to {@function renderNotes}
  */
-async function getAndRenderUserNotes() {
+async function getAndRenderNotes() {
   if (netlifyIdentity.currentUser() !== null) {
     await fetch(`/.netlify/functions/user-notes`, {
       headers: {
@@ -92,7 +92,7 @@ async function getAndRenderUserNotes() {
   }
 }
 
-async function deleteUserNote(e) {
+async function deleteNote(e) {
   showAnimation(e);
 
   const deleteMe = e.target.dataset.deleteId;
@@ -106,7 +106,30 @@ async function deleteUserNote(e) {
       removeAnimation();
 
       if (r.ok) {
-        getAndRenderUserNotes();
+        getAndRenderNotes();
+      }
+      if (!r.ok) {
+        alert("Something is messed up. You could try logging out and back in.");
+      }
+    });
+  }
+}
+
+async function updateUserNote(e) {
+  showAnimation(e);
+
+  const deleteMe = e.target.dataset.deleteId;
+
+  if (netlifyIdentity.currentUser() !== null) {
+    await fetch(`/.netlify/functions/delete-note?id=${deleteMe}`, {
+      headers: {
+        Authorization: `Bearer ${theToken()}`,
+      },
+    }).then((r) => {
+      removeAnimation();
+
+      if (r.ok) {
+        getAndRenderNotes();
       }
       if (!r.ok) {
         alert("Something is messed up. You could try logging out and back in.");
@@ -140,7 +163,7 @@ window.netlifyIdentity.on("login", (u) => {
   console.log("logging in a user, giving them a token, here they are: ");
   console.log(u);
   applyBodyClass("logged-in");
-  getAndRenderUserNotes();
+  getAndRenderNotes();
 });
 
 window.netlifyIdentity.on("logout", () => {
