@@ -65,7 +65,8 @@ async function createUserNote() {
     });
   }
 
-  document.getElementById("new-note").value = "";
+  document.getElementById("title").value = "";
+  document.getElementById("content").value = "";
 }
 
 /**

@@ -52,8 +52,8 @@ const handler = async (event, context) => {
     content: content,
     // image: image,
     domain: "litit-demo.netlify.app",
-    // preset: preset,
-    // status: status,
+    preset: preset,
+    status: status,
     // dateFrom: dateFrom,
     // dateTo: dateTo,
     
