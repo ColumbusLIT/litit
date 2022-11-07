@@ -44,7 +44,7 @@ const handler = async (event, context) => {
         "Content-Type": "application/json",
         "access-control-allow-origin": "*",
       },
-      body: JSON.stringify(notes),
+      body: JSON.stringify(notes[0]),
     };
   } catch (error) {
     return {
