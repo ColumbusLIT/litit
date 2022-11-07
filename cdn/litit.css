@@ -1,0 +1,12 @@
+/* litit Notification Box */
+.litit {
+  background-color: #d1eab4;
+  padding: 1rem;
+}
+.litit-title {
+  margin: 0;
+}
+.litit-content {
+  margin: 0;
+  font-size: 1.25rem;
+}
