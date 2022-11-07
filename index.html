@@ -45,40 +45,39 @@
         </div>
       </section>
 
-      <!-- <div class="sanity-no-go">
-          <div>
-            <em style="color: silver">login on the left to access your data</em>
-          </div>
-        </div> -->
+      <section class="sanity-operations">
+        <nav class="menu">
+          <ul id="notes">
+            <!-- notes get rendered here -->
+          </ul>
+        </nav>
+        <div class="form">
 
-      <section class="sanity-operations form">
-        <label>
-          <!-- <span>Title</span> -->
-          <input type="text" id="title" maxlength="40" value="Praxis update" placeholder="Title"/>
-        </label>
-        <label>
-          <!-- <span>Content</span> -->
-          <textarea id="content" rows="6"></textarea>
-        </label>
-        <label>
-          <span>Preset</span>
-          <select id="preset">
-            <option value="default">Default</option>
-            <option value="unstyled">Unstyled</option>
-          </select>
-        </label>
-        <label>
-          <span>Status</span>
-          <select id="status">
-            <option value="published" selected>Published</option>
-            <option value="draft">Draft</option>
-            <option value="archived">Archived</option>
-          </select>
-        </label>
-        <button onclick="createNote()">SAVE</button>
-        <ul id="notes">
-          <!-- notes get rendered here -->
-        </ul>
+          <label>
+            <!-- <span>Title</span> -->
+            <input type="text" id="title" maxlength="40" value="Praxis update" placeholder="Title"/>
+          </label>
+          <label>
+            <!-- <span>Content</span> -->
+            <textarea id="content" rows="6"></textarea>
+          </label>
+          <label>
+            <span>Preset</span>
+            <select id="preset">
+              <option value="default">Default</option>
+              <option value="unstyled">Unstyled</option>
+            </select>
+          </label>
+          <label>
+            <span>Status</span>
+            <select id="status">
+              <option value="published" selected>Published</option>
+              <option value="draft">Draft</option>
+              <option value="archived">Archived</option>
+            </select>
+          </label>
+          <button onclick="createNote()">SAVE</button>
+        </div>
       </section>
     </main>
 
