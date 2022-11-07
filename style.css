@@ -2,13 +2,7 @@
   font-family: "PlayfairDisplay-Regular";
   src: url("fonts/PlayfairDisplay-Regular.woff2") format("woff2");
 }
-@font-face {
-  font-family: "NotoSansMarchen";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("fonts//NotoSansMarchen.woff2") format("woff2");
-}
+
 :root {
   --content-width: min(100%, 72rem);
   --form-width: min(100%, 34rem);
@@ -23,10 +17,6 @@
     sans-serif;
   --headlines: "PlayfairDisplay-Regular", var(--copy);
   --source: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-}
-[lang="bo"] {
-  font-family: "NotoSansMarchen", Kokonor, "Microsoft Himalaya", sans-serif;
-  display: none;
 }
 
 html {
@@ -384,9 +374,25 @@ li > button {
 }
 
 
-.nota {
-  margin-top: 60px;
-  font-size: 11px;
-  color: #1a0909;
-  width: 330px;
+@media screen and (max-width: 991px) {
+  .hide-lg {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .hide-md {
+    /* start of medium tablet styles */
+    display: none !important;
+  }
+  .hero > div {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  /* start of phone styles */
+  .hide-sm {
+    display: none !important;
+  }
 }
