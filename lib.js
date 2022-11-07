@@ -156,6 +156,7 @@ async function getNote(e) {
       .then((data) => {
         console.log(data)
         fillForm(data);
+        removeAnimation();
       })
   }
 }
