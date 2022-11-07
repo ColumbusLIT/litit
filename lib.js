@@ -1,8 +1,12 @@
-const titleField = document.getElementById("title");
-const contentField = document.getElementById("content");
-const presetField = document.getElementById("preset");
-const statusField = document.getElementById("status");
-const notesContainer = document.getElementById("notes");
+let titleField, contentField, presetField, statusField, notesContainer;
+window.addEventListener("DOMContentLoaded", (event) => {
+  titleField = document.getElementById("title");
+  contentField = document.getElementById("content");
+  presetField = document.getElementById("preset");
+  statusField = document.getElementById("status");
+  notesContainer = document.getElementById("notes");
+});
+
 /**
  * Renders notes in the DOM.
  * @param {Array} arr  array of note objects
