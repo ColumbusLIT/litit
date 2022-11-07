@@ -322,10 +322,8 @@ body.logged-out .account {
 }
 
 #notes li {
-  background-color: white; 
-  border-bottom: 1px solid #6b6b6b;
+  border-bottom: 1px solid var(--color);
   line-height: 4rem;
-  border-radius: 2px;
   text-decoration: none;
 }
 
@@ -337,11 +335,6 @@ li > button {
 
 .data-netlify li {
   display: inline-block;
-}
-
-
-#notes li {
-  margin-bottom: 1rem;
 }
 
 #animation {
