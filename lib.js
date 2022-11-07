@@ -102,6 +102,9 @@ async function getAndRenderNotes() {
       .then((data) => {
         //console.log(data)
         renderNotes(data);
+      })
+      .catch((e) => {
+        alert("Something is messed up. You could try logging out and back in.");
       });
   }
 }
@@ -116,23 +119,29 @@ function fillForm(note) {
 async function deleteNote(e) {
   showAnimation(e);
 
-  const deleteMe = e.target.dataset.deleteId;
+  const id = e.target.dataset.deleteId;
 
   if (netlifyIdentity.currentUser() !== null) {
-    await fetch(`/.netlify/functions/delete-note?id=${deleteMe}`, {
+    await fetch(`/.netlify/functions/delete-note?id=${id}`, {
       headers: {
         Authorization: `Bearer ${theToken()}`,
       },
-    }).then((r) => {
-      removeAnimation();
+    })
+      .then((r) => {
+        removeAnimation();
 
-      if (r.ok) {
-        getAndRenderNotes();
-      }
-      if (!r.ok) {
+        if (r.ok) {
+          getAndRenderNotes();
+        }
+        if (!r.ok) {
+          alert(
+            "Something is messed up. You could try logging out and back in."
+          );
+        }
+      })
+      .catch((e) => {
         alert("Something is messed up. You could try logging out and back in.");
-      }
-    });
+      });
   }
 }
 
@@ -146,17 +155,17 @@ async function getNote(e) {
       headers: {
         Authorization: `Bearer ${theToken()}`,
       },
-    }).then((r) => {
-      removeAnimation();
-
-      if (r.ok) {
-        // TODO:
-        fillForm();
-      }
-      if (!r.ok) {
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        //console.log(data)
+        renderNotes(data);
+      })
+      .catch((e) => {
         alert("Something is messed up. You could try logging out and back in.");
-      }
-    });
+      });
   }
 }
 
