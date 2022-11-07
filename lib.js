@@ -198,7 +198,7 @@ function theUserId() {
 
 
 async function setDomain() {
-  showAnimation(e);
+  showAnimation();
 
   const id = theUserId();
   
@@ -215,6 +215,7 @@ async function setDomain() {
         console.log(data);
         DOMAIN = data;
         domainContainer.innerHTML = domain;
+        getAndRenderNotes(); 
         removeAnimation();
       });
   }
@@ -245,7 +246,6 @@ window.netlifyIdentity.on("login", (u) => {
   console.log("logging in a user, giving them a token, here they are: ");
   console.log(u);
   applyBodyClass("logged-in");
-  getAndRenderNotes(); // TODO only show after domain is set
   setDomain();
 });
 
