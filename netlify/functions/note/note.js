@@ -18,31 +18,28 @@ const handler = async (event, context) => {
   
   /* no user, no go */
   if (!uId) {
-    console.log("No user!");
     return {
       statusCode: 401,
       body: JSON.stringify({
-        data: "no go",
+        data: "no user",
       }),
     };
   }
   /* no basic role, no go */
   if (uRoles[0] !== "basic") {
-    console.log("No basic role!");
     return {
       statusCode: 401,
       body: JSON.stringify({
-        data: "no go",
+        data: "no uRoles",
       }),
     };
   }
   /* no id, no go */
   if (!id.length < 1) {
-    console.log("No ID!");
     return {
       statusCode: 401,
       body: JSON.stringify({
-        data: "no go",
+        data: "no id",
       }),
     };
   }
