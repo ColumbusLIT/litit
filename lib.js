@@ -1,11 +1,11 @@
-let titleField, contentField, presetField, statusField, notesContainer;
+let titleField, contentField, presetField, statusField, notesContainer, domainLink;
 let DOMAIN;
 window.addEventListener("DOMContentLoaded", (event) => {
   titleField = document.getElementById("title");
   contentField = document.getElementById("content");
   presetField = document.getElementById("preset");
   statusField = document.getElementById("status");
-  domainContainer = document.getElementById("domain");
+  domainLink = document.getElementById("domain");
   notesContainer = document.getElementById("notes");
 });
 
@@ -41,6 +41,13 @@ function renderNotes(arr) {
 
     notesContainer.appendChild(newItem);
   });
+}
+
+function clearForm() {
+  titleField.value = "";
+  contentField.value = "";
+  presetField.value = "default";
+  statusField.value = "draft";
 }
 
 /**
@@ -83,8 +90,7 @@ async function createNote() {
     });
   }
 
-  titleField.value = "";
-  contentField.value = "";
+  clearForm();
 }
 
 /**
@@ -214,7 +220,8 @@ async function setDomain() {
       .then((data) => {
         console.log(data);
         DOMAIN = data;
-        domainContainer.innerHTML = domain;
+        domainLink.innerHTML = DOMAIN;
+        domainLink.href = `https://${DOMAIN}`
         getAndRenderNotes(); 
         removeAnimation();
       });
