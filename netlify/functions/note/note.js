@@ -13,6 +13,9 @@ const client = sanityClient({
 const handler = async (event, context) => {
   const id = event.queryStringParameters.id;
 
+  const uId = context.clientContext.user.sub
+  const uRoles = context.clientContext.user.app_metadata.roles
+  
   /* no user, no go */
   if (!uId) {
     console.log("No user!");
