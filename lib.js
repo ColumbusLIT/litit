@@ -155,7 +155,7 @@ async function getNote(e) {
       })
       .then((data) => {
         console.log(data)
-        fillNote(data);
+        fillForm(data);
       })
   }
 }
