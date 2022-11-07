@@ -1,9 +1,11 @@
 let titleField, contentField, presetField, statusField, notesContainer;
+let DOMAIN;
 window.addEventListener("DOMContentLoaded", (event) => {
   titleField = document.getElementById("title");
   contentField = document.getElementById("content");
   presetField = document.getElementById("preset");
   statusField = document.getElementById("status");
+  domainContainer = document.getElementById("domain");
   notesContainer = document.getElementById("notes");
 });
 
@@ -185,6 +187,27 @@ async function updateNote(e) {
   }
 }
 
+async function setDomain(id) {
+  showAnimation(e);
+
+  if (netlifyIdentity.currentUser() !== null) {
+    await fetch(`${FUNCTIONS}/domain?id=${id}`, {
+      headers: {
+        Authorization: `Bearer ${theToken()}`,
+      },
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        DOMAIN = data;
+        domainContainer.innerHTML = domain;
+        removeAnimation();
+      });
+  }
+}
+
 function theToken() {
   if (netlifyIdentity.currentUser() !== null) {
     const localUser = JSON.parse(localStorage.getItem("gotrue.user"));
@@ -211,6 +234,7 @@ window.netlifyIdentity.on("login", (u) => {
   console.log(u);
   applyBodyClass("logged-in");
   getAndRenderNotes();
+  setDomain(u.id);
 });
 
 window.netlifyIdentity.on("logout", () => {
