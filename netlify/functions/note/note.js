@@ -35,7 +35,7 @@ const handler = async (event, context) => {
     };
   }
   /* no id, no go */
-  if (!id.length < 1) {
+  if (!id) {
     return {
       statusCode: 401,
       body: JSON.stringify({
