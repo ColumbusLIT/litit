@@ -190,14 +190,14 @@ async function getNote(e) {
 async function updateNote() {
   showAnimation();
 
-  const id = formContainer.dataset.noteId;
   const params = getParams();
+  params.id = formContainer.dataset.noteId;
   const queryString = getQueryString(params);
   alert(queryString)
 
   if (netlifyIdentity.currentUser() !== null) {
     // TODO: Add data
-    await fetch(`${FUNCTIONS}/update-note?id=${encodeURIComponent(id)}&${queryString}`, {
+    await fetch(`${FUNCTIONS}/update?id=${queryString}`, {
       headers: {
         Authorization: `Bearer ${theToken()}`,
       },
