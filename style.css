@@ -336,6 +336,7 @@ ul {
   display: flex;
   border-radius: 2px;
   padding: 0 1rem;
+  cursor: pointer;
   margin-bottom: 0.5rem;
 }
 .account .menu a:hover {
