@@ -2,20 +2,24 @@
 <html lang="en">
   <head>
     <title>LIT IT - Health Care Solutions</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script
-      type="text/javascript"
-      src="https://identity.netlify.com/v1/netlify-identity-widget.js"
-    ></script>
-    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
     <link rel="stylesheet" href="style.css" />
-    <script src="lib.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/turretcss/dist/turretcss.min.css"
+      crossorigin="anonymous"
+    />
   </head>
   <body class="logged-out">
     <div class="notification">
-      <span
-        >Save 10% when you sign up in the next 24 hours.</span
-      >
+      <span>Save 10% when you sign up in the next 24 hours.</span>
     </div>
 
     <header>
@@ -54,12 +58,33 @@
         </nav>
         <div class="form" id="form" data-note-id="">
           <label>
-            <span class="label-name">Domain</span><a class="label-description" href="https://acme.com" id="domain-link">Visit</a>
-            <input type="text" id="domain" name="domain" minlength="5" maxlength="50" value="" placeholder="acme.com"/>
+            <span class="label-name">Domain</span
+            ><a
+              class="label-description"
+              href="https://acme.com"
+              id="domain-link"
+              >Visit</a
+            >
+            <input
+              type="text"
+              id="domain"
+              name="domain"
+              minlength="5"
+              maxlength="50"
+              value=""
+              placeholder="acme.com"
+            />
           </label>
           <label>
             <span class="label-name">Title</span>
-            <input type="text" id="title" name="title" maxlength="40" value="" placeholder="Title"/>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              maxlength="40"
+              value=""
+              placeholder="Title"
+            />
           </label>
           <label>
             <span class="label-name">Content</span>
@@ -80,7 +105,9 @@
               <option value="archived">Archived</option>
             </select>
           </label>
-          <button onclick="updateOrCreateNote()" class="button--save">SAVE</button>
+          <button onclick="updateOrCreateNote()" class="button--save">
+            SAVE
+          </button>
           <button onclick="deleteNote()" class="button--delete">DELETE</button>
         </div>
       </section>
@@ -93,5 +120,11 @@
     <footer>
       <div>&copy; 2022 LIT IT</div>
     </footer>
+    <script
+      type="text/javascript"
+      src="https://identity.netlify.com/v1/netlify-identity-widget.js"
+    ></script>
+    <script src="lib.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
   </body>
 </html>

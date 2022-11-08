@@ -239,7 +239,7 @@ button:hover {
 }
 
 button.button--delete {
-  background-color: var(--second);
+  background-color: var(--);
 }
 
 /* Legacy from her down */
