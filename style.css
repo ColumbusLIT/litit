@@ -194,31 +194,28 @@ label .label-description {
   font-size: 0.8rem;
   color: var(--color-secondary-1-4);
 }
-input, textarea {
+input,
+textarea,
+select {
   font-family: var(--copy);
   border-radius: 2px;
   line-height: 2rem;
   background-color: transparent;
-  border: 0;
+  border: 1px solid var(--color-secondary-1-0);
   font-size: 1rem;
-}
-input[name="title"] {
-  font-family: var(--headlines);
-  font-size: 2rem;
-
+  padding: 0.5rem;
 }
 input:hover,
 input:focus,
 textarea:hover,
-textarea:focus,select:hover {
+textarea:focus,
+select:hover {
   background-color: white;
+  border: 1px solid var(--color-secondary-1-3);
 }
-select {
-  background-color: transparent;
-  font-family: var(--copy);
-  font-size: 1rem;
-  border: 0;
-  padding: 0.5rem;
+input[name="title"] {
+  font-family: var(--headlines);
+  font-size: 2rem;
 }
 
 /* Page:Texts */
@@ -349,7 +346,7 @@ ul {
 .account .menu a .meta {
   display: flex;
   flex-direction: row;
-  flex:1;
+  flex: 1;
 }
 .account .menu a .status {
   flex: 0 0 1rem;
@@ -358,7 +355,7 @@ ul {
   background-color: transparent;
 }
 
-.status--draft .status{
+.status--draft .status {
   background-color: var(--color-secondary-1-2);
 }
 .status--archived .status {
