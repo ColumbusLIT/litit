@@ -334,6 +334,7 @@ body.logged-out .account {
 li > button {
   border: 0px;
   background-color: transparent;
+  color: var(--color);
   width: 2rem;
 }
 

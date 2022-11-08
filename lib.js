@@ -1,4 +1,10 @@
-let titleField, contentField, presetField, statusField, notesContainer, domainLink;
+let titleField,
+  contentField,
+  presetField,
+  statusField,
+  notesContainer,
+  domainLink,
+  formContainer;
 let DOMAIN;
 window.addEventListener("DOMContentLoaded", (event) => {
   titleField = document.getElementById("title");
@@ -6,6 +12,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   presetField = document.getElementById("preset");
   statusField = document.getElementById("status");
   domainLink = document.getElementById("domain");
+  formContainer = document.getElementById("form");
   notesContainer = document.getElementById("notes");
 });
 
@@ -24,20 +31,9 @@ function renderNotes(arr) {
   notes.forEach((obj) => {
     let newItem = document.createElement("li");
     newItem.id = obj.id;
-
+    netItem.setAttribute("data-edit-id", obj.id);
     newItem.appendChild(document.createTextNode(obj.title));
-    
-    let deleteButton = document.createElement("button");
-    deleteButton.addEventListener("click", deleteNote);
-    deleteButton.innerHTML = "Delete";
-    deleteButton.setAttribute("data-delete-id", obj.id);
-    newItem.appendChild(deleteButton);
-
-    let editButton = document.createElement("button");
-    editButton.addEventListener("click", getNote);
-    editButton.innerHTML = "Edit";
-    editButton.setAttribute("data-edit-id", obj.id);
-    newItem.appendChild(editButton);
+    newItem.addEventListener("click", getNote);
 
     notesContainer.appendChild(newItem);
   });
@@ -48,6 +44,19 @@ function clearForm() {
   contentField.value = "";
   presetField.value = "default";
   statusField.value = "draft";
+  formContainer.dataset.noteId = "";
+}
+
+/**
+ * Delegate
+ */
+function updateOrCreateNote() {
+  const id = formContainer.dataset.noteId;
+  if (id !== "") {
+    updateNote();
+  } else {
+    createNote();
+  }
 }
 
 /**
@@ -121,12 +130,13 @@ function fillForm(note) {
   contentField.value = note.content;
   presetField.value = note.preset;
   statusField.value = note.status;
+  formContainer.dataset.noteId = note.id;
 }
 
-async function deleteNote(e) {
-  showAnimation(e);
+async function deleteNote() {
+  showAnimation();
 
-  const id = e.target.dataset.deleteId;
+  const id = formContainer.dataset.noteId;
 
   if (netlifyIdentity.currentUser() !== null) {
     await fetch(`${FUNCTIONS}/delete-note?id=${id}`, {
@@ -146,10 +156,10 @@ async function deleteNote(e) {
   }
 }
 
-async function getNote(e) {
-  showAnimation(e);
+async function getNote() {
+  showAnimation();
 
-  const id = e.target.dataset.editId;
+  const id = formContainer.dataset.noteId;
 
   if (netlifyIdentity.currentUser() !== null) {
     await fetch(`${FUNCTIONS}/note?id=${id}`, {
@@ -168,10 +178,10 @@ async function getNote(e) {
   }
 }
 
-async function updateNote(e) {
-  showAnimation(e);
+async function updateNote() {
+  showAnimation();
 
-  const id = e.target.dataset.deleteId;
+  const id = formContainer.dataset.noteId;
 
   if (netlifyIdentity.currentUser() !== null) {
     // TODO: Add data
@@ -202,12 +212,11 @@ function theUserId() {
   }
 }
 
-
 async function setDomain() {
   showAnimation();
 
   const id = theUserId();
-  
+
   if (netlifyIdentity.currentUser() !== null) {
     await fetch(`${FUNCTIONS}/domain?id=${id}`, {
       headers: {
@@ -221,8 +230,8 @@ async function setDomain() {
         console.log(data);
         DOMAIN = data;
         domainLink.innerHTML = DOMAIN;
-        domainLink.href = `https://${DOMAIN}`
-        getAndRenderNotes(); 
+        domainLink.href = `https://${DOMAIN}`;
+        getAndRenderNotes();
         removeAnimation();
       });
   }
