@@ -29,7 +29,7 @@ function renderNotes(arr) {
   let notes = arr.filter((n) => n.title.length > 0);
 
   notes.forEach((n) => {
-    let newItem = document.createElement("li");
+    let newItem = document.createElement("a");
     newItem.id = n.id;
     newItem.classList.add(`status--${n.status}`);
     newItem.setAttribute("data-edit-id", n.id);
