@@ -256,6 +256,7 @@ ul {
 }
 .account .menu a:hover {
   background-color: var(--primary-500);
+  color: var(--light-500);
 }
 
 #notes {
@@ -285,17 +286,18 @@ ul {
   pointer-events: none;
 }
 .account .menu a.note.active {
-  background-color: var(--light-active);
+  background-color: var(--primary-500);
+  color: var(--light-500);
 }
 
 .status--draft .status {
-  background-color: var(--warning-500);
+  background-color: var(--secondary-500);
 }
 .status--archived .status {
   background-color: var(--grey-500);
 }
 .status--published .status {
-  background-color: var(--secondary-500);
+  background-color: var(--success-500);
 }
 
 
