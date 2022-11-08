@@ -178,10 +178,10 @@ async function getNote() {
   }
 }
 
-async function updateNote() {
+async function updateNote(e) {
   showAnimation();
 
-  const id = formContainer.dataset.noteId;
+  const id = e.target.dataset.editId;
 
   if (netlifyIdentity.currentUser() !== null) {
     // TODO: Add data
