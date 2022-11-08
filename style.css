@@ -195,6 +195,7 @@ label .label-description {
   color: var(--color-secondary-1-4);
 }
 input, textarea {
+  font-family: var(--copy);
   border-radius: 2px;
   line-height: 2rem;
   background-color: transparent;
@@ -327,12 +328,14 @@ ul {
 }
 .account .menu {
   border-right: 1px solid var(--color-secondary-1-0);
+  padding-right: 2rem;
   width: 22rem;
 }
 .account .menu a {
-  line-height: 4rem;
-  display: block;
+  line-height: 3rem;
+  display: flex;
   border-radius: 2px;
+  padding: 0 1rem;
   margin-bottom: 0.5rem;
 }
 .account .menu a:hover {
@@ -342,14 +345,25 @@ ul {
 #notes {
   margin: 0;
 }
+.account .menu a .meta {
+  display: flex;
+  flex-direction: row;
+  flex:1;
+}
+.account .menu a .status {
+  flex: 0 0 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: transparent;
+}
 
-.status--draft {
+.status--draft .status{
   background-color: var(--color-secondary-1-2);
 }
-.status--archived {
+.status--archived .status {
   background-color: var(--color-primary-1);
 }
-.status--published {
+.status--published .status {
   background-color: var(--color-secondary-2-1);
 }
 

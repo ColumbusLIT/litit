@@ -35,7 +35,17 @@ function renderNotes(arr) {
     newItem.id = n.id;
     newItem.classList.add(`status--${n.status}`);
     newItem.setAttribute("data-edit-id", n.id);
-    newItem.appendChild(document.createTextNode(n.title));
+    let meta = document.createElement('div')
+    let title = document.createElement('span')
+    title.classList.add('note-title')
+    let domain = document.createElement('span')
+    domain.classList.add('note-domain')
+    meta.appendChild(title)
+    meta.appendChild(domain)
+    newItem.appendChild(meta);
+    let status = document.createElement('span')
+    status.classList.add('status')
+    newItem.appendChild(status);
     newItem.addEventListener("click", getNote);
 
     notesContainer.appendChild(newItem);
