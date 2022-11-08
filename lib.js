@@ -11,9 +11,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
   titleField = document.getElementById("title");
   contentField = document.getElementById("content");
   presetField = document.getElementById("preset");
-  domainField = document.getElementById("domain");
   statusField = document.getElementById("status");
-  domainLink = document.getElementById("domain");
+  domainField = document.getElementById("domain");
+  domainLink = document.getElementById("domain-link");
   formContainer = document.getElementById("form");
   notesContainer = document.getElementById("notes");
 });

@@ -58,6 +58,8 @@ const handler = async (event, context) => {
     newNote.dateTo = event.queryStringParameters.dateTo;
   } 
 
+  console.log(newNote)
+
   try {
     const result = await client.create(newNote).then((res) => {
       console.log("RESULT FROM SANITY: ", res);
