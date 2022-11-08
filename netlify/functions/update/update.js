@@ -47,7 +47,7 @@ const handler = async (event, context) => {
     preset: event.queryStringParameters.preset,
     status: event.queryStringParameters.status,
   };
-  console.log("here",newNote,queryStringParameters)
+  console.log("here",newNote,event.queryStringParameters)
 
   /* TODO: Plan release date */
   if (event.queryStringParameters.planRelease) {
