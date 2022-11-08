@@ -197,7 +197,7 @@ async function updateNote() {
 
   if (netlifyIdentity.currentUser() !== null) {
     // TODO: Add data
-    await fetch(`${FUNCTIONS}/update?id=${queryString}`, {
+    await fetch(`${FUNCTIONS}/update?${queryString}`, {
       headers: {
         Authorization: `Bearer ${theToken()}`,
       },
