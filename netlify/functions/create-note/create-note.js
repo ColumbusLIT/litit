@@ -11,26 +11,6 @@ const client = sanityClient({
 });
 
 const handler = async (event, context) => {
-  let newNote = {
-    _type: "note",
-    title: event.queryStringParameters.title,
-    content: event.queryStringParameters.content,
-    // TODO: image: image,
-    domain: event.queryStringParameters.domain, // TODO: event.queryStringParameters.domain
-    preset: event.queryStringParameters.preset,
-    status: event.queryStringParameters.status,
-
-    belongsTo: {
-      _type: "reference",
-      _ref: uId,
-    },
-  };
-
-  /* TODO: Plan release date */
-  if (event.queryStringParameters.planRelease) {
-    newNote.dateFrom = event.queryStringParameters.dateFrom;
-    newNote.dateTo = event.queryStringParameters.dateTo;
-  } 
 
   const uId = context.clientContext.user.sub;
   const uRoles = context.clientContext.user.app_metadata.roles;
@@ -56,6 +36,27 @@ const handler = async (event, context) => {
       }),
     };
   }
+
+  let newNote = {
+    _type: "note",
+    title: event.queryStringParameters.title,
+    content: event.queryStringParameters.content,
+    // TODO: image: image,
+    domain: event.queryStringParameters.domain, // TODO: event.queryStringParameters.domain
+    preset: event.queryStringParameters.preset,
+    status: event.queryStringParameters.status,
+
+    belongsTo: {
+      _type: "reference",
+      _ref: uId,
+    },
+  };
+
+  /* TODO: Plan release date */
+  if (event.queryStringParameters.planRelease) {
+    newNote.dateFrom = event.queryStringParameters.dateFrom;
+    newNote.dateTo = event.queryStringParameters.dateTo;
+  } 
 
   try {
     const result = await client.create(newNote).then((res) => {

@@ -11,21 +11,6 @@ const client = sanityClient({
 });
 
 const handler = async (event, context) => {
-  const newNote = {
-    updateThisId: event.queryStringParameters.id,
-    content: event.queryStringParameters.content,
-    // TODO: image
-    // TODO: domain: event.queryStringParameters.domain,
-    preset: event.queryStringParameters.preset,
-    status: event.queryStringParameters.status,
-    domain: 
-  };
-
-  /* TODO: Plan release date */
-  if (event.queryStringParameters.planRelease) {
-    newNote.dateFrom = event.queryStringParameters.dateFrom;
-    newNote.dateTo = event.queryStringParameters.dateTo;
-  } 
 
   const uId = context.clientContext.user.sub;
   const uRoles = context.clientContext.user.app_metadata.roles;
@@ -51,6 +36,22 @@ const handler = async (event, context) => {
       }),
     };
   }
+
+  const newNote = {
+    updateThisId: event.queryStringParameters.id,
+    content: event.queryStringParameters.content,
+    // TODO: image
+    // TODO: domain: event.queryStringParameters.domain,
+    preset: event.queryStringParameters.preset,
+    status: event.queryStringParameters.status,
+    domain: 
+  };
+
+  /* TODO: Plan release date */
+  if (event.queryStringParameters.planRelease) {
+    newNote.dateFrom = event.queryStringParameters.dateFrom;
+    newNote.dateTo = event.queryStringParameters.dateTo;
+  } 
 
   try {
     const result = await client
