@@ -11,7 +11,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   titleField = document.getElementById("title");
   contentField = document.getElementById("content");
   presetField = document.getElementById("preset");
-  domainField = document.getElementById("domain")
+  domainField = document.getElementById("domain");
   statusField = document.getElementById("status");
   domainLink = document.getElementById("domain");
   formContainer = document.getElementById("form");
@@ -35,16 +35,19 @@ function renderNotes(arr) {
     newItem.id = n.id;
     newItem.classList.add(`status--${n.status}`);
     newItem.setAttribute("data-edit-id", n.id);
-    let meta = document.createElement('div')
-    let title = document.createElement('span')
-    title.classList.add('note-title')
-    let domain = document.createElement('span')
-    domain.classList.add('note-domain')
-    meta.appendChild(title)
-    meta.appendChild(domain)
+    let meta = document.createElement("div");
+    meta.classList.add("meta");
+    let title = document.createElement("span");
+    title.classList.add("note-title");
+    title.innerText = n.title;
+    let domain = document.createElement("span");
+    domain.classList.add("note-domain");
+    domain.innerText = n.domain;
+    meta.appendChild(title);
+    meta.appendChild(domain);
     newItem.appendChild(meta);
-    let status = document.createElement('span')
-    status.classList.add('status')
+    let status = document.createElement("span");
+    status.classList.add("status");
     newItem.appendChild(status);
     newItem.addEventListener("click", getNote);
 
@@ -110,10 +113,10 @@ async function createNote() {
       },
     }).then((r) => {
       removeAnimation();
-      console.log(r)
+      console.log(r);
       if (r.ok) {
         getAndRenderNotes();
-        getNote(r.data.id)
+        getNote(r.data.id);
       }
       if (!r.ok) {
         alert("Something is messed up. You could try logging out and back in.");
@@ -141,10 +144,9 @@ async function getAndRenderNotes() {
         return response.json();
       })
       .then((data) => {
-        if(data.length!==0){
+        if (data.length !== 0) {
           renderNotes(data);
         } else {
-
         }
       });
   }
