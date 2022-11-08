@@ -46,8 +46,8 @@ function clearForm() {
   titleField.value = "";
   contentField.value = "";
   presetField.value = "default";
-  domainField.value = PRIMARY_PRIMARY_DOMAIN;
-  statusField.value = "draft";
+  domainField.value = "";
+  statusField.value = "published";
   formContainer.dataset.noteId = "";
 }
 
@@ -100,9 +100,10 @@ async function createNote() {
       },
     }).then((r) => {
       removeAnimation();
-
+      console.log(r)
       if (r.ok) {
         getAndRenderNotes();
+        getNote(r.data.id)
       }
       if (!r.ok) {
         alert("Something is messed up. You could try logging out and back in.");

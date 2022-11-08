@@ -54,34 +54,34 @@
         </nav>
         <div class="form" id="form" data-note-id="">
           <label>
-            <span>Domain</span><a href="https://acme.com" id="domain">Visit</a>
+            <span class="label-name">Domain</span><a class="label-description" href="https://acme.com" id="domain">Visit</a>
             <input type="text" id="domain" minlength="5" maxlength="50" value="" placeholder="acme.com"/>
           </label>
           <label>
-            <!-- <span>Title</span> -->
+            <span class="label-name">Title</span>
             <input type="text" id="title" maxlength="40" value="" placeholder="Title"/>
           </label>
           <label>
-            <!-- <span>Content</span> -->
+            <span class="label-name">Content</span>
             <textarea id="content" rows="6"></textarea>
           </label>
           <label>
-            <span>Preset</span>
+            <span class="label-name">Preset</span>
             <select id="preset">
               <option value="default">Default</option>
               <option value="unstyled">Unstyled</option>
             </select>
           </label>
           <label>
-            <span>Status</span>
+            <span class="label-name">Status</span>
             <select id="status">
               <option value="published" selected>Published</option>
               <option value="draft">Draft</option>
               <option value="archived">Archived</option>
             </select>
           </label>
-          <button onclick="updateOrCreateNote()">SAVE</button>
-          <button onclick="deleteNote()">DELETE</button>
+          <button onclick="updateOrCreateNote()" class="button--save">SAVE</button>
+          <button onclick="deleteNote()" class="button--delete">DELETE</button>
         </div>
       </section>
     </main>
