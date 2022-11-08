@@ -156,10 +156,10 @@ async function deleteNote() {
   }
 }
 
-async function getNote() {
+async function getNote(e) {
   showAnimation();
 
-  const id = formContainer.dataset.noteId;
+  const id = e.target.dataset.editId;
 
   if (netlifyIdentity.currentUser() !== null) {
     await fetch(`${FUNCTIONS}/note?id=${id}`, {
@@ -178,10 +178,10 @@ async function getNote() {
   }
 }
 
-async function updateNote(e) {
+async function updateNote() {
   showAnimation();
 
-  const id = e.target.dataset.editId;
+  const id = formContainer.dataset.noteId;
 
   if (netlifyIdentity.currentUser() !== null) {
     // TODO: Add data
