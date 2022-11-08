@@ -38,8 +38,8 @@ const handler = async (event, context) => {
   }
 
   
+  const id = event.queryStringParameters.id,
   const newNote = {
-    id: event.queryStringParameters.id,
     title: event.queryStringParameters.title,
     content: event.queryStringParameters.content,
     // TODO: image
@@ -57,7 +57,7 @@ const handler = async (event, context) => {
 
   try {
     const result = await client
-      .patch(newNote.id)
+      .patch(id)
       .set(newNote)
       .commit()
       .then((res) => {
