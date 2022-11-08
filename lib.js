@@ -74,7 +74,7 @@ function getParams() {
     content: contentField.value.replace(/[^\w\s!?]/g, ""),
     domain: DOMAIN,
     preset: presetField.value,
-    status: presetField.value,
+    status: statusField.value,
   };
 }
 
