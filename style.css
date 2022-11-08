@@ -317,7 +317,7 @@ ul {
   gap: 1rem;
 }
 .account .menu {
-  border-right: 1px solid var(--color);
+  border-right: 1px solid var(--color-secondary-1-0);
   width: 22rem;
 }
 .account .menu a {
@@ -325,6 +325,24 @@ ul {
   line-height: 4rem;
   display: block;
 }
+
+#notes {
+  margin: 0;
+}
+
+#notes a#domain {
+  border-bottom: 1px solid var(--color);
+  line-height: 4rem;
+  text-decoration: none;
+  cursor: pointer;
+  display: block;
+  margin-bottom: .25rem;
+  border-radius: 2px;
+}
+#notes a:hover {
+  background-color: var(--color-primary-1-0);
+}
+
 
 body.logged-in .sanity-no-go {
   display: none;
@@ -343,25 +361,10 @@ body.logged-out .account {
     margin-left: 3rem;
 }
 
-#notes {
-  margin: 0;
-}
-
-#notes a {
-  border-bottom: 1px solid var(--color);
-  line-height: 4rem;
-  text-decoration: none;
-  cursor: pointer;
-  display: block;
-  margin-bottom: .25rem;
-}
-#notes a:hover {
-  background-color: var(--color-secondary-1-0);
-}
-
 .data-netlify li {
   display: inline-block;
 }
+
 
 #animation {
   position: fixed;
