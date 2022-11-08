@@ -31,7 +31,7 @@ function renderNotes(arr) {
   notes.forEach((obj) => {
     let newItem = document.createElement("li");
     newItem.id = obj.id;
-    netItem.setAttribute("data-edit-id", obj.id);
+    newItem.setAttribute("data-edit-id", obj.id);
     newItem.appendChild(document.createTextNode(obj.title));
     newItem.addEventListener("click", getNote);
 

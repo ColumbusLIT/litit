@@ -122,10 +122,10 @@ header .badge {
   align-items: center;
   padding: 0 1rem;
 }
-.menu a {
+header .menu a {
   margin-right: 4rem;
 }
-.menu a.active {
+header .menu a.active {
   margin-right: 4rem;
   color: var(--second);
 }
