@@ -37,6 +37,7 @@ const handler = async (event, context) => {
     };
   }
 
+  
   const newNote = {
     updateThisId: event.queryStringParameters.id,
     content: event.queryStringParameters.content,
@@ -45,6 +46,7 @@ const handler = async (event, context) => {
     preset: event.queryStringParameters.preset,
     status: event.queryStringParameters.status,
   };
+  context.log("here",newNote)
 
   /* TODO: Plan release date */
   if (event.queryStringParameters.planRelease) {
