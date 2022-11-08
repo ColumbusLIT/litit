@@ -193,7 +193,6 @@ async function updateNote() {
   const params = getParams();
   params.id = formContainer.dataset.noteId;
   const queryString = getQueryString(params);
-  alert(queryString)
 
   if (netlifyIdentity.currentUser() !== null) {
     // TODO: Add data
