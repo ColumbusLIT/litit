@@ -25,6 +25,8 @@ function renderNotes(arr) {
     let newItem = document.createElement("li");
     newItem.id = obj.id;
 
+    newItem.appendChild(document.createTextNode(obj.title));
+    
     let deleteButton = document.createElement("button");
     deleteButton.addEventListener("click", deleteNote);
     deleteButton.innerHTML = "Delete";
@@ -36,8 +38,6 @@ function renderNotes(arr) {
     editButton.innerHTML = "Edit";
     editButton.setAttribute("data-edit-id", obj.id);
     newItem.appendChild(editButton);
-
-    newItem.appendChild(document.createTextNode(obj.title));
 
     notesContainer.appendChild(newItem);
   });
