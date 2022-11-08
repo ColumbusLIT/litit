@@ -3,13 +3,15 @@ let titleField,
   presetField,
   statusField,
   notesContainer,
+  domainField,
   domainLink,
   formContainer;
-let DOMAIN;
+let PRIMARY_DOMAIN;
 window.addEventListener("DOMContentLoaded", (event) => {
   titleField = document.getElementById("title");
   contentField = document.getElementById("content");
   presetField = document.getElementById("preset");
+  domainField = document.getElementById("domain")
   statusField = document.getElementById("status");
   domainLink = document.getElementById("domain");
   formContainer = document.getElementById("form");
@@ -44,6 +46,7 @@ function clearForm() {
   titleField.value = "";
   contentField.value = "";
   presetField.value = "default";
+  domainField.value = PRIMARY_PRIMARY_DOMAIN;
   statusField.value = "draft";
   formContainer.dataset.noteId = "";
 }
@@ -72,7 +75,7 @@ function getParams() {
   return {
     title: titleField.value.replace(/[^\w\s!?]/g, ""),
     content: contentField.value.replace(/[^\w\s!?]/g, ""),
-    domain: DOMAIN,
+    domain: domainField.value,
     preset: presetField.value,
     status: statusField.value,
   };
@@ -127,8 +130,11 @@ async function getAndRenderNotes() {
         return response.json();
       })
       .then((data) => {
-        //console.log(data)
-        renderNotes(data);
+        if(data.length!==0){
+          renderNotes(data);
+        } else {
+
+        }
       });
   }
 }
@@ -137,6 +143,8 @@ function fillForm(note) {
   titleField.value = note.title;
   contentField.value = note.content;
   presetField.value = note.preset;
+  domainField.value = note.domain;
+  domainLink.href = `https://${note.domain}`;
   statusField.value = note.status;
   formContainer.dataset.noteId = note.id;
 }
@@ -239,9 +247,7 @@ async function setDomain() {
       })
       .then((data) => {
         console.log(data);
-        DOMAIN = data;
-        domainLink.innerHTML = DOMAIN;
-        domainLink.href = `https://${DOMAIN}`;
+        PRIMARY_DOMAIN = data;
         getAndRenderNotes();
         removeAnimation();
       });
