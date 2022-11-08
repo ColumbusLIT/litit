@@ -193,10 +193,11 @@ async function updateNote() {
   const id = formContainer.dataset.noteId;
   const params = getParams();
   const queryString = getQueryString(params);
+  alert(queryString)
 
   if (netlifyIdentity.currentUser() !== null) {
     // TODO: Add data
-    await fetch(`${FUNCTIONS}/update-note?id=${id}&${queryString}`, {
+    await fetch(`${FUNCTIONS}/update-note?id=${encodeURIComponent(id)}&${queryString}`, {
       headers: {
         Authorization: `Bearer ${theToken()}`,
       },
