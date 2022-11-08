@@ -57,7 +57,7 @@ const handler = async (event, context) => {
 
   try {
     const result = await client
-      .patch(id)
+      .patch(newNote.id)
       .set(newNote)
       .commit()
       .then((res) => {
