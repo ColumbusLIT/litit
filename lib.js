@@ -31,7 +31,7 @@ function renderNotes(arr) {
   notes.forEach((n) => {
     let newItem = document.createElement("li");
     newItem.id = n.id;
-    newItem.classList.add(`status--${n.status}`)
+    newItem.classList.add(`status--${n.status}`);
     newItem.setAttribute("data-edit-id", n.id);
     newItem.appendChild(document.createTextNode(n.title));
     newItem.addEventListener("click", getNote);
@@ -60,6 +60,24 @@ function updateOrCreateNote() {
   }
 }
 
+function getQueryString(params) {
+  return Object.keys(params)
+    .map((key) => {
+      return encodeURIComponent(key) + "=" + encodeURIComponent(params[key]);
+    })
+    .join("&");
+}
+
+function getParams() {
+  return {
+    title: titleField.value.replace(/[^\w\s!?]/g, ""),
+    content: contentField.value.replace(/[^\w\s!?]/g, ""),
+    domain: DOMAIN,
+    preset: presetField.value,
+    status: presetField.value,
+  };
+}
+
 /**
  * Takes text value from DOM input
  * and sends it to {@function netlify/functions/create-note} with token
@@ -69,19 +87,8 @@ function updateOrCreateNote() {
 async function createNote() {
   showAnimation();
 
-  let params = {
-    title: titleField.value.replace(/[^\w\s!?]/g, ""),
-    content: contentField.value.replace(/[^\w\s!?]/g, ""),
-    domain: "litit-demo.netlify.app",
-    preset: "default",
-    status: "published",
-  };
-
-  var queryString = Object.keys(params)
-    .map((key) => {
-      return encodeURIComponent(key) + "=" + encodeURIComponent(params[key]);
-    })
-    .join("&");
+  let params = getParams();
+  var queryString = getQueryString(params);
 
   if (netlifyIdentity.currentUser() !== null) {
     await fetch(`${FUNCTIONS}/create-note?${queryString}`, {
@@ -184,10 +191,12 @@ async function updateNote() {
   showAnimation();
 
   const id = formContainer.dataset.noteId;
+  const params = getParams();
+  const queryString = getQueryString(params);
 
   if (netlifyIdentity.currentUser() !== null) {
     // TODO: Add data
-    await fetch(`${FUNCTIONS}/update-note?id=${id}`, {
+    await fetch(`${FUNCTIONS}/update-note?id=${id}&${queryString}`, {
       headers: {
         Authorization: `Bearer ${theToken()}`,
       },

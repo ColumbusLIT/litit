@@ -18,6 +18,7 @@ const handler = async (event, context) => {
     // TODO: domain: event.queryStringParameters.domain,
     preset: event.queryStringParameters.preset,
     status: event.queryStringParameters.status,
+    domain: 
   };
 
   /* TODO: Plan release date */

@@ -16,7 +16,7 @@ const handler = async (event, context) => {
     title: event.queryStringParameters.title,
     content: event.queryStringParameters.content,
     // TODO: image: image,
-    domain: "litit-demo.netlify.app", // TODO: event.queryStringParameters.domain
+    domain: event.queryStringParameters.domain, // TODO: event.queryStringParameters.domain
     preset: event.queryStringParameters.preset,
     status: event.queryStringParameters.status,
 
