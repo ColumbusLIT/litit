@@ -218,78 +218,14 @@ input[name="title"] {
   font-size: 2rem;
 }
 
-/* Page:Texts */
-
-.text-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 1rem;
-}
-.text-item {
-  background-color: var(--background);
-}
-.text-item img {
-  max-width: 100%;
-  display: flex;
-  flex-direction: row;
-}
-.text-item h2 {
-  margin-top: 0;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-/* Page:Detail */
-.breadcrumbs {
-  border-bottom: 1px solid var(--color);
-  padding: 1rem 0;
-  font-size: 0.8rem;
-}
-.tab-button,
-.button {
-  font-size: 0.8rem;
-  line-height: 1.5rem;
-  padding: 0 1rem;
-  border-radius: 0.1rem;
-  cursor: pointer;
-  border: 1px solid white;
-  background-color: white;
-  display: inline-block;
-}
-.tab-button:hover {
-  color: var(--second);
-}
-.button span {
-  font-size: smaller;
-}
-.tab-button.active {
-  border: 1px solid var(--color);
-  background-color: var(--background);
-  border-bottom: none;
-
-  border-bottom-left-radius: 0;
-
-  border-bottom-right-radius: 0;
-}
-.pane {
-  display: none;
-  padding: 1rem 0;
-}
-.pane img {
-  width: 100%;
-}
-.pane.active {
-  display: block;
-}
 
 button {
-  padding: 7px;
+  padding: .5rem;
   border-radius: 2px;
-  width: 150px;
   color: white;
   font-weight: bold;
   font-family: inherit;
-  background-color: black;
+  background-color: var(--color);
   border-width: 0px;
   border-style: solid;
   border-color: black;
@@ -297,7 +233,7 @@ button {
 }
 
 button:hover {
-  background-color: #1a1a1a;
+  background-color: transparent;
   transition: 0.2s;
 }
 
@@ -352,7 +288,6 @@ ul {
   flex: 0 0 1rem;
   height: 1rem;
   border-radius: 50%;
-  background-color: transparent;
 }
 
 .status--draft .status {
