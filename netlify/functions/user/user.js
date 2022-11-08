@@ -13,9 +13,9 @@ const client = sanityClient({
 const handler = async (event, context) => {
   const id = event.queryStringParameters.id;
 
-  const uId = context.clientContext.user.sub
-  const uRoles = context.clientContext.user.app_metadata.roles
-  
+  const uId = context.clientContext.user.sub;
+  const uRoles = context.clientContext.user.app_metadata.roles;
+
   /* no user, no go */
   if (!uId) {
     return {
@@ -39,32 +39,18 @@ const handler = async (event, context) => {
     return {
       statusCode: 401,
       body: JSON.stringify({
-        data: "no id",
+        data: "no sanity user id",
       }),
     };
   }
 
   try {
-    const query = `*[_id == "${id}"]{title, content, image, domain, preset, status, dateFrom, dateTo, user, _updatedAt, _id}`;
+    const query = `*[_id == "${id}"][0]{domain,email,fullName}`;
 
-    let notes;
+    let user;
 
     await client.fetch(query).then((r) => {
-      notes = r.map((n) => {
-        return {
-          title: n.title,
-          content: n.content,
-          image: n.image,
-          domain: n.domain,
-          preset: n.preset,
-          status: n.status,
-          dateFrom: n.dateFrom,
-          dateTo: n.dateTo,
-          belongsTo: n.belongsTo._ref,
-          updated: n._updatedAt,
-          id: n._id,
-        };
-      });
+      user = { domain: r.domain, email: r.email, fullName: r.fullName };
     });
 
     return {
@@ -73,7 +59,7 @@ const handler = async (event, context) => {
         "Content-Type": "application/json",
         "access-control-allow-origin": "*",
       },
-      body: JSON.stringify(notes[0]),
+      body: JSON.stringify(user),
     };
   } catch (error) {
     return {
