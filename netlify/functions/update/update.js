@@ -40,13 +40,14 @@ const handler = async (event, context) => {
   
   const newNote = {
     id: event.queryStringParameters.id,
+    title: event.queryStringParameters.title,
     content: event.queryStringParameters.content,
     // TODO: image
     domain: event.queryStringParameters.domain,
     preset: event.queryStringParameters.preset,
     status: event.queryStringParameters.status,
   };
-  console.log("here",newNote)
+  console.log("here",newNote,queryStringParameters)
 
   /* TODO: Plan release date */
   if (event.queryStringParameters.planRelease) {
