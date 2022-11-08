@@ -7,6 +7,7 @@ let titleField,
   domainLink,
   formContainer;
 let PRIMARY_DOMAIN;
+let noteElements;
 window.addEventListener("DOMContentLoaded", (event) => {
   titleField = document.getElementById("title");
   contentField = document.getElementById("content");
@@ -31,10 +32,11 @@ function renderNotes(arr) {
   let notes = arr.filter((n) => n.title.length > 0);
 
   notes.forEach((n) => {
-    console.log("rendering",n)
+    console.log("rendering", n);
     let newItem = document.createElement("a");
     newItem.id = n.id;
     newItem.classList.add(`status--${n.status}`);
+    newItem.classList.add(`note`);
     newItem.setAttribute("data-edit-id", n.id);
     let meta = document.createElement("div");
     meta.classList.add("meta");
@@ -51,9 +53,10 @@ function renderNotes(arr) {
     status.classList.add("status");
     newItem.appendChild(status);
     newItem.addEventListener("click", getNote);
-
+    // append to dom
     notesContainer.appendChild(newItem);
   });
+  noteElements = notesContainer.querySelector(".note");
 }
 
 function clearForm() {
@@ -191,7 +194,15 @@ async function getNote(e) {
   showAnimation();
 
   const id = e.target.dataset.editId;
+  // active
+  if (id) {
+    noteElements.forEach((note) => {
+      note.classList.remove("active");
+    });
+    e.target.classList.add("active");
+  }
 
+  // load note to form
   if (netlifyIdentity.currentUser() !== null) {
     await fetch(`${FUNCTIONS}/note?id=${id}`, {
       headers: {

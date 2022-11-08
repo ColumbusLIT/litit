@@ -280,7 +280,7 @@ ul {
 #notes {
   margin: 0;
 }
-.account .menu a .meta {
+.account .menu a.note .meta {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -288,20 +288,23 @@ ul {
   pointer-events: none;
 }
 
-.account .menu a .meta .title {
+.account .menu a.note .meta .title {
   pointer-events: none;
 }
-.account .menu a .meta .domain {
+.account .menu a.note .meta .domain {
   font-size: .8rem;
   opacity: .67;
   pointer-events: none;
 }
-.account .menu a .status {
+.account .menu a.note .status {
   flex: 0 0 1rem;
   height: 1rem;
   margin-top: 1rem;
   border-radius: 50%;
   pointer-events: none;
+}
+.account .menu a.note.active {
+  background-color: #d2d7d9;
 }
 
 .status--draft .status {
@@ -313,6 +316,7 @@ ul {
 .status--published .status {
   background-color: var(--color-secondary-2-1);
 }
+
 
 body.logged-in .sanity-no-go {
   display: none;
