@@ -194,30 +194,26 @@ label .label-description {
   font-size: 0.8rem;
   color: var(--color-secondary-1-4);
 }
-input {
-  font-family: var(--headlines);
-  font-size: 2rem;
+input, textarea {
   border-radius: 2px;
   line-height: 2rem;
   background-color: transparent;
   border: 0;
+  font-size: 1rem;
+}
+input[name="title"] {
+  font-family: var(--headlines);
+  font-size: 2rem;
+
 }
 input:hover,
-input:focus {
-  background-color: white;
-}
-textarea {
-  font-family: var(--copy);
-  font-size: 1.5rem;
-  border: none;
-  border-radius: 2px;
-  background-color: transparent;
-}
+input:focus,
 textarea:hover,
-textarea:focus {
+textarea:focus,select:hover {
   background-color: white;
 }
 select {
+  background-color: transparent;
   font-family: var(--copy);
   font-size: 1rem;
   border: 0;
