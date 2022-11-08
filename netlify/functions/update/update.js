@@ -38,7 +38,7 @@ const handler = async (event, context) => {
   }
 
   
-  const id = event.queryStringParameters.id,
+  const id = event.queryStringParameters.id;
   const newNote = {
     title: event.queryStringParameters.title,
     content: event.queryStringParameters.content,
