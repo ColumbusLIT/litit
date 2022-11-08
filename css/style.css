@@ -323,17 +323,11 @@ body.logged-out .account {
   width: 100vw;
   height: 100vh;
   z-index: 100000;
-  background-color: rgba(100, 100, 100, 0.74);
+  background-color: rgba(0, 0,0, 0.7);
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-#animation img {
-  width: 10vw;
-  opacity: 0.5;
-  animation: 2s rocking infinite ease-in-out;
 }
 
 @keyframes rocking {

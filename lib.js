@@ -138,6 +138,7 @@ async function createNote() {
  * passes result to {@function renderNotes}
  */
 async function getAndRenderNotes() {
+  showAnimation()
   if (netlifyIdentity.currentUser() !== null) {
     await fetch(`${FUNCTIONS}/notes`, {
       headers: {
@@ -150,8 +151,10 @@ async function getAndRenderNotes() {
       .then((data) => {
         if (data.length !== 0) {
           renderNotes(data);
+
         } else {
         }
+        removeAnimation();
       });
   }
 }

@@ -1,0 +1,8 @@
+/* https://turretcss.com/element/spinner/ */
+.spinner {
+  --spinner-width: 0.125rem;
+  --spinner-size: 1.75rem;
+  --spinner-speed: var(--speed-slow);
+  --spinner-background-color: color-mod(var(--black) alpha(10%));
+  --spinner-foreground-color: var(--white);
+}
