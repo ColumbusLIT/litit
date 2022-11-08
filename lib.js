@@ -56,7 +56,7 @@ function renderNotes(arr) {
     // append to dom
     notesContainer.appendChild(newItem);
   });
-  noteElements = notesContainer.querySelector(".note");
+  noteElements = notesContainer.querySelectorAll(".note");
 }
 
 function clearForm() {

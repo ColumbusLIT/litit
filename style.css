@@ -4,31 +4,9 @@
 }
 
 :root {
+  /* Responsive Widths */
   --content-width: min(100%, 72rem);
   --form-width: min(100%, 34rem);
-
-  --color: #000;
-  --second: red;
-  --background: #efefef;
-
-  /* Palette */
-  --color-primary-0: #fff8f6;
-  --color-primary-1: #ffd0c4;
-  --color-primary-2: #ffe1d9;
-  --color-primary-3: #fff0ec;
-  --color-primary-4: #e9d7d3;
-
-  --color-secondary-1-0: #d2d7d9;
-  --color-secondary-1-1: #859fab;
-  --color-secondary-1-2: #a6b8c1;
-  --color-secondary-1-3: #9aa2a6;
-  --color-secondary-1-4: #868f93;
-
-  --color-secondary-2-0: #f1f5ed;
-  --color-secondary-2-1: #d1eab4;
-  --color-secondary-2-2: #dfefcc;
-  --color-secondary-2-3: #e1e8d7;
-  --color-secondary-2-4: #cad3bf;
 
   /* Fonts */
   --copy: -apple-system, --system, BlinkMacSystemFont, "Segoe UI", "Roboto",
