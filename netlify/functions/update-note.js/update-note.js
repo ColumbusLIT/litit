@@ -21,7 +21,7 @@ const handler = async (event, context) => {
     return {
       statusCode: 401,
       body: JSON.stringify({
-        data: "no go",
+        data: "no user",
       }),
     };
   }
@@ -32,7 +32,7 @@ const handler = async (event, context) => {
     return {
       statusCode: 401,
       body: JSON.stringify({
-        data: "no go",
+        data: "no role assigned",
       }),
     };
   }
@@ -41,10 +41,9 @@ const handler = async (event, context) => {
     updateThisId: event.queryStringParameters.id,
     content: event.queryStringParameters.content,
     // TODO: image
-    // TODO: domain: event.queryStringParameters.domain,
+    domain: event.queryStringParameters.domain,
     preset: event.queryStringParameters.preset,
     status: event.queryStringParameters.status,
-    domain: event.queryStringParameters.domain,
   };
 
   /* TODO: Plan release date */
