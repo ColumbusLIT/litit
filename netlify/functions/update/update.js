@@ -39,14 +39,14 @@ const handler = async (event, context) => {
 
   
   const newNote = {
-    updateThisId: event.queryStringParameters.id,
+    id: event.queryStringParameters.id,
     content: event.queryStringParameters.content,
     // TODO: image
     domain: event.queryStringParameters.domain,
     preset: event.queryStringParameters.preset,
     status: event.queryStringParameters.status,
   };
-  context.log("here",newNote)
+  console.log("here",newNote)
 
   /* TODO: Plan release date */
   if (event.queryStringParameters.planRelease) {
@@ -56,7 +56,7 @@ const handler = async (event, context) => {
 
   try {
     const result = await client
-      .patch(updateThisId)
+      .patch(id)
       .set(newNote)
       .commit()
       .then((res) => {
