@@ -60,7 +60,6 @@ const handler = async (event, context) => {
           status: n.status,
           dateFrom: n.dateFrom,
           dateTo: n.dateTo,
-          belongsTo: n.belongsTo._ref,
           updated: n._updatedAt,
           id: n._id,
         };
