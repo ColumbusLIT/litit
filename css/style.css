@@ -195,6 +195,12 @@ input[name="title"] {
   font-family: var(--headlines);
   font-size: 2rem;
 }
+input:invalid,textarea:invalid {
+  border: 1px solid var(--error-500);
+}
+input:valid,textarea:invalid {
+  border: 1px solid var(--success-500);
+}
 
 button {
   padding: 0.5rem;

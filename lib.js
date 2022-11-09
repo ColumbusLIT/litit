@@ -73,7 +73,7 @@ function clearForm() {
   contentField.value = "";
   presetField.value = "default";
   domainField.value = "";
-  statusField.value = "published";
+  statusField.value = "draft";
   formContainer.dataset.noteId = "";
 }
 

@@ -77,6 +77,7 @@
                 minlength="5"
                 maxlength="50"
                 value=""
+                required
                 placeholder="acme.com"
               />
             </label>
@@ -88,12 +89,13 @@
                 name="title"
                 maxlength="40"
                 value=""
+                required
                 placeholder="Title"
               />
             </label>
             <label>
               <span class="label-name">Content</span>
-              <textarea id="content" rows="6"></textarea>
+              <textarea id="content" rows="6" required></textarea>
             </label>
             <label class="select" for="preset">
               <span class="label-name">Preset</span>
