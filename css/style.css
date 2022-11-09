@@ -198,7 +198,7 @@ input[name="title"] {
 input:invalid,textarea:invalid {
   border: 1px solid var(--error-500);
 }
-input:valid,textarea:invalid {
+input:valid,textarea:valid {
   border: 1px solid var(--success-500);
 }
 
