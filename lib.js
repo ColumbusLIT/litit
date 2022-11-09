@@ -21,6 +21,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
   notesContainer = document.getElementById("notes");
 });
 
+const ERRORS = {
+  SessionExpired: "SesssionExpired",
+  UnknownError: "UnknownError",
+};
+
 const FUNCTIONS = "/.netlify/functions";
 
 /**
@@ -162,10 +167,10 @@ async function getAndRenderNotes() {
         }
         /* Errors */
         if (response.status === 403) {
-          return Promise.reject("SessionExpired");
+          return Promise.reject(ERRORS.UnknownError);
         } else {
           return Promise.reject(
-            "UnknownError",
+            ERRORS.UnknownError,
             JSON.stringify(response.json())
           );
         }
@@ -180,7 +185,15 @@ async function getAndRenderNotes() {
       })
       .catch((error) => {
         document.querySelector("body").classList.add("litit--no-notes");
-        alert(error);
+        if (error === ERRORS.SessionExpired) {
+          alert("Your session expired. Please, login again.");
+          window.netlifyIdentity.logout();
+        }
+        if (error === ERRORS.UnknownError) {
+          alert(
+            "Unknown Error. Try reloading the page or login out and in again."
+          );
+        }
       })
       .finally(() => {
         removeAnimation();
