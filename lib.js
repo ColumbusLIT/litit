@@ -65,7 +65,7 @@ function renderNotes(arr) {
   });
   noteElements = notesContainer.querySelectorAll(".note");
 
-  countBadge = notes.length;
+  countBadge.innerText = notes.length;
 }
 
 function clearForm() {
@@ -174,6 +174,8 @@ async function getAndRenderNotes() {
         if (data.length !== 0) {
           renderNotes(data);
           document.querySelector("body").classList.remove("litit--no-notes");
+        } else {
+          countBadge.innerText = 0;
         }
       })
       .catch((error) => {
