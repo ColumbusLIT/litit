@@ -9,17 +9,6 @@ let titleField,
   formContainer;
 let PRIMARY_DOMAIN; // Unused
 let noteElements;
-window.addEventListener("DOMContentLoaded", (event) => {
-  titleField = document.getElementById("title");
-  contentField = document.getElementById("content");
-  presetField = document.getElementById("preset");
-  statusField = document.getElementById("status");
-  countBadge = document.getElementById("count");
-  domainField = document.getElementById("domain");
-  domainLink = document.getElementById("domain-link");
-  formContainer = document.getElementById("form");
-  notesContainer = document.getElementById("notes");
-});
 
 const ERRORS = {
   SessionExpired: "SesssionExpired",
@@ -369,26 +358,41 @@ function removeAnimation() {
   document.getElementById("animation").style.display = "none";
 }
 
-window.netlifyIdentity.on("init", () => {
-  console.log("netlifyIdentity local object ready");
-});
-
-window.netlifyIdentity.on("login", (u) => {
-  getAndRenderNotes();
-  formContainer.addEventListener("submit", updateOrCreateNote);
-  applyBodyClass("logged-in");
-});
-
-window.netlifyIdentity.on("logout", () => {
-  console.log("user logged out");
-  applyBodyClass("logged-out");
-});
-
-applyBodyClass = (str) => {
+function applyBodyClass(str) {
   document.querySelector("body").className = "";
   document.querySelector("body").classList.add(str);
-};
+}
 
+// Initialisation
 window.addEventListener("DOMContentLoaded", (event) => {
+  console.log("Initialize litit app")
+  
   removeAnimation();
+
+  titleField = document.getElementById("title");
+  contentField = document.getElementById("content");
+  presetField = document.getElementById("preset");
+  statusField = document.getElementById("status");
+  countBadge = document.getElementById("count");
+  domainField = document.getElementById("domain");
+  domainLink = document.getElementById("domain-link");
+  formContainer = document.getElementById("form");
+  notesContainer = document.getElementById("notes");
+
+  window.netlifyIdentity.on("init", () => {
+    console.log("checking netlifyIdentity");
+  });
+
+  window.netlifyIdentity.on("login", (u) => {
+    console.log("user logged in")
+    getAndRenderNotes();
+    formContainer.addEventListener("submit", updateOrCreateNote);
+    applyBodyClass("logged-in");
+  });
+
+  window.netlifyIdentity.on("logout", () => {
+    console.log("user logged out");
+    applyBodyClass("logged-out");
+  });
+
 });
