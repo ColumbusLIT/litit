@@ -320,8 +320,7 @@ window.netlifyIdentity.on("init", () => {
 });
 
 window.netlifyIdentity.on("login", (u) => {
-  console.log("logging in a user, giving them a token, here they are: ");
-  console.log(u);
+  getAndRenderNotes();
   applyBodyClass("logged-in");
 });
 
