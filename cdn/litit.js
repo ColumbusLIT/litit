@@ -28,7 +28,7 @@ function renderNote (data){
 fetch(URL)
   .then((res) => res.json())
   .then((data) => {
-    if(data.lenght > 0){  
+    if(data.length > 0){  
       data.forEach((note)=>renderNote(note))        
     } else {
         console.log ('good. nothing to update atm.')
