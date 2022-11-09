@@ -264,7 +264,7 @@ ul {
 }
 .account .menu {
   border-right: 1px solid var(--grey-200);
-  padding-right: 2rem;
+  padding-right: 1rem;
   width: 22rem;
   margin-top: 2rem;
 }
