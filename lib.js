@@ -167,7 +167,7 @@ async function getAndRenderNotes() {
         }
         /* Errors */
         if (response.status === 403) {
-          return Promise.reject(ERRORS.UnknownError);
+          return Promise.reject(ERRORS.AccessDenied);
         } else {
           return Promise.reject(
             ERRORS.UnknownError,
