@@ -39,7 +39,7 @@ function renderNotes(arr) {
     newItem.classList.add(`note`);
     newItem.setAttribute("data-edit-id", n.id);
     let meta = document.createElement("div");
-    meta.classList.add("meta");
+    meta.classList.add("note-meta");
     let title = document.createElement("span");
     title.classList.add("note-title");
     title.innerText = n.title;

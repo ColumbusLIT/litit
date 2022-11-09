@@ -41,7 +41,7 @@ main {
   font-size: 1rem;
 }
 a {
-  color: var(--primary-500);
+  color: var(--dark-500);
   text-decoration: none;
 }
 a:hover {
@@ -262,7 +262,7 @@ ul {
 #notes {
   margin: 0;
 }
-.account .menu a.note .meta {
+.account .menu a.note .note-meta {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -270,10 +270,10 @@ ul {
   pointer-events: none;
 }
 
-.account .menu a.note .meta .title {
+.account .menu a.note .note-meta .note-title {
   pointer-events: none;
 }
-.account .menu a.note .meta .domain {
+.account .menu a.note .note-meta .note-domain {
   font-size: .8rem;
   opacity: .67;
   pointer-events: none;
