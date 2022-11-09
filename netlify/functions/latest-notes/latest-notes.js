@@ -14,7 +14,7 @@ const handler = async (event, context) => {
   const key = event.queryStringParameters.key;
 
   try {
-    const query = `*[_type == "note" && domain == "${key}"]{title, content, image, domain, preset, status, dateFrom, dateTo, user, _updatedAt, _id}`;
+    const query = `*[_type == "note" && domain == "${key}" && status == "published"]{title, content, image, domain, preset, status, dateFrom, dateTo, user, _updatedAt, _id}`;
 
     let notes;
 
@@ -42,7 +42,7 @@ const handler = async (event, context) => {
         "Content-Type": "application/json",
         "access-control-allow-origin": "*",
       },
-      body: JSON.stringify(notes[0]),
+      body: JSON.stringify(notes),
     };
   } catch (error) {
     return {
