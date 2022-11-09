@@ -167,6 +167,7 @@ async function getAndRenderNotes() {
         } else {
           alert("Error. Please try again later.")
           removeAnimation()
+          throw new Error(response.json().errorMessage);
         }
         return response.json();
       })

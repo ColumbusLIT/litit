@@ -8,7 +8,7 @@ const handler = async (event, context) => {
       headers: { "Content-Type": "application/json", "x-litit-error-code":"AccessDenied" },
       statusCode: 403,
       body:
-        error.responseBody || JSON.stringify({ error: "Access denied" }),
+        JSON.stringify({ error: "Access denied" }),
     };
 
   const uId = context.clientContext.user.sub;
