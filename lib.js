@@ -231,7 +231,10 @@ async function deleteNote() {
   showAnimation();
 
   const id = formContainer.dataset.noteId;
-
+  if (!id) {
+    alert("A new message can not be deleted");
+    return;
+  }
   if (netlifyIdentity.currentUser() !== null) {
     await fetch(`${FUNCTIONS}/delete-note?id=${id}`, {
       headers: {
@@ -365,8 +368,8 @@ function applyBodyClass(str) {
 
 // Initialisation
 window.addEventListener("DOMContentLoaded", (event) => {
-  console.log("Initialize litit app")
-  
+  console.log("Initialize litit app");
+
   removeAnimation();
 
   titleField = document.getElementById("title");
@@ -381,18 +384,18 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
   window.netlifyIdentity.on("init", () => {
     console.log("checking netlifyIdentity");
+    applyBodyClass("logged-out");
   });
 
   window.netlifyIdentity.on("login", (u) => {
-    console.log("user logged in")
+    console.log("user logged in");
+    applyBodyClass("logged-in");
     getAndRenderNotes();
     formContainer.addEventListener("submit", updateOrCreateNote);
-    applyBodyClass("logged-in");
   });
 
   window.netlifyIdentity.on("logout", () => {
     console.log("user logged out");
     applyBodyClass("logged-out");
   });
-
 });

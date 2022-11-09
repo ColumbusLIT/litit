@@ -322,7 +322,7 @@ ul {
   background-color: var(--success-500);
 }
 
-body.logged-in .sanity-no-go {
+body.logged-in .landing-page {
   display: none;
 }
 
@@ -368,6 +368,9 @@ body.logged-out .account {
     display: none !important;
   }
   .hero > div {
+    flex-direction: column;
+  }
+  .account-body {
     flex-direction: column;
   }
 }
