@@ -32,10 +32,10 @@ function renderNotes(arr) {
   notesContainer.innerHTML = "";
 
   // TODO: remove data check. dev only
-  if(!Array.isArray(arr)) {
-    alert('Faulty data.')
-    return
-  } 
+  if (!Array.isArray(arr)) {
+    alert("Faulty data.");
+    return;
+  }
   let notes = arr.filter((n) => n.title.length > 0);
 
   notes.forEach((n) => {
@@ -66,7 +66,6 @@ function renderNotes(arr) {
   noteElements = notesContainer.querySelectorAll(".note");
 
   countBadge = notes.length;
-
 }
 
 function clearForm() {
@@ -149,6 +148,8 @@ async function createNote() {
  */
 async function getAndRenderNotes() {
   showAnimation();
+  document.querySelector("body").classList.add("litit--no-notes");
+
   if (netlifyIdentity.currentUser() !== null) {
     await fetch(`${FUNCTIONS}/notes`, {
       headers: {
@@ -158,29 +159,30 @@ async function getAndRenderNotes() {
       .then((response) => {
         if (response.status === 200) {
           return response.json();
-        } 
-        if (response.status === 403){
-          // Force relogin
-          alert("Session expired. Please login again.")
-          window.netlifyIdentity.logout()
-          removeAnimation();
-        } else {
-          alert("Error. Please try again later.")
-          removeAnimation()
-          throw new Error(JSON.stringify(response.json()));
         }
-        return response.json();
+        /* Errors */
+        if (response.status === 403) {
+          return Promise.reject("SessionExpired");
+        } else {
+          return Promise.reject(
+            "UnknownError",
+            JSON.stringify(response.json())
+          );
+        }
       })
       .then((data) => {
-        
         if (data.length !== 0) {
           renderNotes(data);
-          document.querySelector('body').classList.remove('litit--no-notes')
-        } else {
-          document.querySelector('body').classList.add('litit--no-notes')
+          document.querySelector("body").classList.remove("litit--no-notes");
         }
-        removeAnimation();
       })
+      .catch((error) => {
+        document.querySelector("body").classList.add("litit--no-notes");
+        alert(error);
+      })
+      .finally(() => {
+        removeAnimation();
+      });
   }
 }
 
