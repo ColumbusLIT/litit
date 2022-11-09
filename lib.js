@@ -26,6 +26,12 @@ const ERRORS = {
   UnknownError: "UnknownError",
 };
 
+const NOTE_STATUS = {
+  PUBLISHED: "published",
+  DRAFT: "draft",
+  ARCHIVED: "archived"
+}
+
 const FUNCTIONS = "/.netlify/functions";
 
 /**
@@ -43,8 +49,30 @@ function renderNotes(arr) {
   }
   let notes = arr.filter((n) => n.title.length > 0);
 
+  let count = {
+    draft: 0,
+    published: 0,
+    archived: 0,
+  }
+
+  // Sort by date
+  notes.sort((a,b) => {
+    return new Date(b.date) - new Date(a.date);
+  });
+
   notes.forEach((n) => {
-    console.log("rendering", n);
+    switch(n.status){
+      case NOTE_STATUS.PUBLISHED:
+        count.published++;
+        break;
+      case NOTE_STATUS.DRAFT:
+        count.draft++;
+        break;
+      case NOTE_STATUS.ARCHIVED:
+        count.archived++;
+        break;
+    }
+    
     let newItem = document.createElement("a");
     newItem.id = n.id;
     newItem.classList.add(`status--${n.status}`);
