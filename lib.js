@@ -152,12 +152,16 @@ async function getAndRenderNotes() {
       },
     })
       .then((response) => {
-        if (response.status == 200) {
+        if (response.status === 200) {
           return response.json();
-        } else {
+        } 
+        if (response.status === 302){
           // Force relogin
           window.netlifyIdentity.logout()
           removeAnimation();
+        } else {
+          alert(response.data.error)
+          removeAnimation()
         }
         return response.json();
       })
