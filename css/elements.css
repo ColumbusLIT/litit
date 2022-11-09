@@ -38,3 +38,10 @@
     transform: rotate(359deg);
   }
 }
+
+mark {
+  margin: 0;
+  padding: 0.2em 0.4em;
+  font-size: inherit;
+  background: #ff0;
+}

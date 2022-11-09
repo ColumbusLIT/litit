@@ -11,11 +11,15 @@
 
     <!-- <link rel="stylesheet" href="css/colors.css" />
     <link rel="stylesheet" href="css/elements.css" /> -->
+
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body class="logged-out">
     <div class="notification">
-      <span>Beta Version. Please feel free to contact us for any bugs you encounter.</span>
+      <span
+        >Beta Version. Please feel free to contact us for any bugs you
+        encounter.</span
+      >
     </div>
 
     <header>
@@ -46,66 +50,71 @@
       </section>
 
       <section class="account">
-        <nav class="menu">
-          <h2>Notification Boxes <a onclick="clearForm()">+ New</a></h2>
-          <div id="notes">
-            <!-- notes get rendered here -->
+        <div class="account-header">
+          <div>Notification Boxes <mark id="count">0</mark></div>
+          <button class="menu-new-button" onclick="clearForm()">+ New</button>
+        </div>
+        <div class="account-body">
+          <nav class="menu">
+            <div id="notes">
+              <!-- notes get rendered here -->
+            </div>
+          </nav>
+          <div class="form" id="form" data-note-id="">
+            <label>
+              <span class="label-name">Domain</span
+              ><a
+                class="label-description"
+                href="https://acme.com"
+                target="_blank"
+                id="domain-link"
+                >Visit</a
+              >
+              <input
+                type="text"
+                id="domain"
+                name="domain"
+                minlength="5"
+                maxlength="50"
+                value=""
+                placeholder="acme.com"
+              />
+            </label>
+            <label>
+              <span class="label-name">Title</span>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                maxlength="40"
+                value=""
+                placeholder="Title"
+              />
+            </label>
+            <label>
+              <span class="label-name">Content</span>
+              <textarea id="content" rows="6"></textarea>
+            </label>
+            <label class="select" for="preset">
+              <span class="label-name">Preset</span>
+              <select id="preset">
+                <option value="default">Default</option>
+                <option value="unstyled">Unstyled</option>
+              </select>
+            </label>
+            <label>
+              <span class="label-name">Status</span>
+              <select id="status">
+                <option value="published" selected>Published</option>
+                <option value="draft">Draft</option>
+                <option value="archived">Archived</option>
+              </select>
+            </label>
+            <button onclick="updateOrCreateNote()" class="button--save">
+              SAVE
+            </button>
+            <button onclick="deleteNote()" class="button--delete">DELETE</button>
           </div>
-        </nav>
-        <div class="form" id="form" data-note-id="">
-          <label>
-            <span class="label-name">Domain</span
-            ><a
-              class="label-description"
-              href="https://acme.com"
-              target="_blank"
-              id="domain-link"
-              >Visit</a
-            >
-            <input
-              type="text"
-              id="domain"
-              name="domain"
-              minlength="5"
-              maxlength="50"
-              value=""
-              placeholder="acme.com"
-            />
-          </label>
-          <label>
-            <span class="label-name">Title</span>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              maxlength="40"
-              value=""
-              placeholder="Title"
-            />
-          </label>
-          <label>
-            <span class="label-name">Content</span>
-            <textarea id="content" rows="6"></textarea>
-          </label>
-          <label class="select" for="preset">
-            <span class="label-name">Preset</span>
-            <select id="preset">
-              <option value="default">Default</option>
-              <option value="unstyled">Unstyled</option>
-            </select>
-          </label>
-          <label>
-            <span class="label-name">Status</span>
-            <select id="status">
-              <option value="published" selected>Published</option>
-              <option value="draft">Draft</option>
-              <option value="archived">Archived</option>
-            </select>
-          </label>
-          <button onclick="updateOrCreateNote()" class="button--save">
-            SAVE
-          </button>
-          <button onclick="deleteNote()" class="button--delete">DELETE</button>
         </div>
       </section>
     </main>

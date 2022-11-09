@@ -2,6 +2,7 @@ let titleField,
   contentField,
   presetField,
   statusField,
+  countBadge,
   notesContainer,
   domainField,
   domainLink,
@@ -13,6 +14,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   contentField = document.getElementById("content");
   presetField = document.getElementById("preset");
   statusField = document.getElementById("status");
+  countBadge = document.getElementById("count");
   domainField = document.getElementById("domain");
   domainLink = document.getElementById("domain-link");
   formContainer = document.getElementById("form");
@@ -63,6 +65,7 @@ function renderNotes(arr) {
   });
   noteElements = notesContainer.querySelectorAll(".note");
 
+  countBadge = notes.length;
 
 }
 
@@ -158,11 +161,11 @@ async function getAndRenderNotes() {
         } 
         if (response.status === 302){
           // Force relogin
-          alert(response.data.error)
+          alert("Session expired. Please login again.")
           window.netlifyIdentity.logout()
           removeAnimation();
         } else {
-          alert(JSON.stringify(response))
+          alert("Error. Please try again later.")
           removeAnimation()
         }
         return response.json();
