@@ -196,12 +196,10 @@ async function getAndRenderNotes() {
         }
         /* Errors */
         if (response.status === 403) {
-          return Promise.reject(ERRORS.AccessDenied);
+          throw new Error(ERRORS.AccessDenied);
         } else {
-          return Promise.reject(
-            ERRORS.UnknownError,
-            JSON.stringify(response.json())
-          );
+          console.log(JSON.stringify(response));
+          throw new Error(ERRORS.UnknownError);
         }
       })
       .then((data) => {
