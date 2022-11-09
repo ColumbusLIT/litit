@@ -6,7 +6,7 @@ let titleField,
   domainField,
   domainLink,
   formContainer;
-let PRIMARY_DOMAIN;
+let PRIMARY_DOMAIN; // Unused
 let noteElements;
 window.addEventListener("DOMContentLoaded", (event) => {
   titleField = document.getElementById("title");
@@ -61,7 +61,7 @@ function renderNotes(arr) {
     notesContainer.appendChild(newItem);
   });
   noteElements = notesContainer.querySelectorAll(".note");
-  
+
 
 }
 
@@ -274,6 +274,7 @@ function theUserId() {
   }
 }
 
+/** Unsued */
 async function setDomain() {
   showAnimation();
 
@@ -322,7 +323,6 @@ window.netlifyIdentity.on("login", (u) => {
   console.log("logging in a user, giving them a token, here they are: ");
   console.log(u);
   applyBodyClass("logged-in");
-  setDomain();
 });
 
 window.netlifyIdentity.on("logout", () => {
