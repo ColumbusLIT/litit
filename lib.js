@@ -29,6 +29,7 @@ const FUNCTIONS = "/.netlify/functions";
 function renderNotes(arr) {
   notesContainer.innerHTML = "";
 
+  // TODO: remove data check. dev only
   if(!Array.isArray(arr)) {
     alert('Faulty data.')
     return
