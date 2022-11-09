@@ -1,7 +1,5 @@
-@font-face {
-  font-family: "PlayfairDisplay-Regular";
-  src: url("../fonts/PlayfairDisplay-Regular.woff2") format("woff2");
-}
+@import "fonts.css";
+@import "turret/turret.css";
 
 :root {
   /* Responsive Widths */
@@ -15,7 +13,7 @@
   --headlines: "PlayfairDisplay-Regular", var(--copy);
   --source: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
-
+/* 
 html {
   font-size: 16px;
 }
@@ -69,7 +67,7 @@ code {
 }
 p {
   margin-bottom: 3rem;
-}
+} */
 .notification {
   font-size: 0.8rem;
   /* border-bottom: 1px solid var(--color); */
@@ -119,13 +117,13 @@ header .badge {
   align-items: center;
   padding: 0 1rem;
 }
-header .menu a {
+/* header .menu a {
   margin-right: 4rem;
 }
 header .menu a.active {
   margin-right: 4rem;
   color: var(--second);
-}
+} */
 
 footer {
   padding: 4rem;
@@ -157,7 +155,7 @@ section {
   margin-top: 2rem;
   width: var(--form-width);
 }
-label {
+/* label {
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
@@ -191,13 +189,13 @@ textarea:focus,
 select:focus {
   background-color: var(--background);
   border: 1px solid var(--primary-500);
-}
-input[name="title"] {
+} */
+/* input[name="title"] {
   font-family: var(--headlines);
   font-size: 2rem;
-}
+} */
 
-
+/* 
 button {
   padding: .5rem;
   border-radius: 2px;
@@ -215,17 +213,17 @@ button:hover {
   background-color: var(--primary-hover);
 
   transition: 0.2s;
-}
+} */
 
-button.button--delete {
+/* button.button--delete {
   background-color: var(--error-500);
 }
 button.button--delete:hover {
   background-color: var(--error-hover);
-}
+} */
 
 /* Legacy from her down */
-
+/* 
 .log {
   padding: 1rem;
 }
@@ -236,7 +234,7 @@ li {
 
 ul {
   padding: 0;
-}
+} */
 
 .account {
   display: flex;

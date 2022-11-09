@@ -158,10 +158,11 @@ async function getAndRenderNotes() {
         } 
         if (response.status === 302){
           // Force relogin
+          alert(response.data.error)
           window.netlifyIdentity.logout()
           removeAnimation();
         } else {
-          alert(response.data.error)
+          alert(JSON.stringify(response))
           removeAnimation()
         }
         return response.json();
