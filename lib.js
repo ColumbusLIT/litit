@@ -384,10 +384,16 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
   window.netlifyIdentity.on("init", () => {
     console.log("checking netlifyIdentity");
-    applyBodyClass("logged-out");
+    if(window.netlifyIdentity.currentUser()){
+      console.log("user is logged in");
+      applyBodyClass("logged-in");
+    } else {
+      console.log("user is logged out")
+      applyBodyClass("logged-out");
+    }
   });
 
-  window.netlifyIdentity.on("login", (u) => {
+  window.netlifyIdentity.on("login", () => {
     console.log("user logged in");
     applyBodyClass("logged-in");
     getAndRenderNotes();
