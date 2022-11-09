@@ -83,9 +83,10 @@ function clearForm() {
 }
 
 /**
- * Delegate
+ * Catch submit form and delegate update or creation of note
  */
-function updateOrCreateNote() {
+function updateOrCreateNote(e) {
+  e.preventDefault()
   const id = formContainer.dataset.noteId;
   if (id !== "") {
     updateNote();
