@@ -199,7 +199,7 @@ input:invalid,textarea:invalid {
   border: 1px solid var(--error-500);
 }
 input:valid,textarea:valid {
-  border: 1px solid var(--success-500);
+  /* border: 1px solid var(--success-500); */
 }
 
 button {
