@@ -29,8 +29,8 @@ const ERRORS = {
 const NOTE_STATUS = {
   PUBLISHED: "published",
   DRAFT: "draft",
-  ARCHIVED: "archived"
-}
+  ARCHIVED: "archived",
+};
 
 const FUNCTIONS = "/.netlify/functions";
 
@@ -53,15 +53,15 @@ function renderNotes(arr) {
     draft: 0,
     published: 0,
     archived: 0,
-  }
+  };
 
   // Sort by date
-  notes.sort((a,b) => {
+  notes.sort((a, b) => {
     return new Date(b.date) - new Date(a.date);
   });
 
   notes.forEach((n) => {
-    switch(n.status){
+    switch (n.status) {
       case NOTE_STATUS.PUBLISHED:
         count.published++;
         break;
@@ -72,7 +72,7 @@ function renderNotes(arr) {
         count.archived++;
         break;
     }
-    
+
     let newItem = document.createElement("a");
     newItem.id = n.id;
     newItem.classList.add(`status--${n.status}`);
@@ -114,7 +114,7 @@ function clearForm() {
  * Catch submit form and delegate update or creation of note
  */
 function updateOrCreateNote(e) {
-  e.preventDefault()
+  e.preventDefault();
   const id = formContainer.dataset.noteId;
   if (id !== "") {
     updateNote();
