@@ -29,6 +29,10 @@ const FUNCTIONS = "/.netlify/functions";
 function renderNotes(arr) {
   notesContainer.innerHTML = "";
 
+  if(typeof arr !== 'array') {
+    alert('Faulty data.')
+    return
+  } 
   let notes = arr.filter((n) => n.title.length > 0);
 
   notes.forEach((n) => {
@@ -57,6 +61,8 @@ function renderNotes(arr) {
     notesContainer.appendChild(newItem);
   });
   noteElements = notesContainer.querySelectorAll(".note");
+  
+
 }
 
 function clearForm() {
@@ -138,7 +144,7 @@ async function createNote() {
  * passes result to {@function renderNotes}
  */
 async function getAndRenderNotes() {
-  showAnimation()
+  showAnimation();
   if (netlifyIdentity.currentUser() !== null) {
     await fetch(`${FUNCTIONS}/notes`, {
       headers: {
@@ -146,16 +152,25 @@ async function getAndRenderNotes() {
       },
     })
       .then((response) => {
+        if (response.status == 200) {
+          return response.json();
+        } else {
+          // Force relogin
+          window.netlifyIdentity.logout()
+          removeAnimation();
+        }
         return response.json();
       })
       .then((data) => {
+        
         if (data.length !== 0) {
           renderNotes(data);
-
+          document.querySelector('body').classList.remove('litit--no-notes')
         } else {
+          document.querySelector('body').classList.add('litit--no-notes')
         }
         removeAnimation();
-      });
+      })
   }
 }
 
