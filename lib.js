@@ -375,6 +375,7 @@ window.netlifyIdentity.on("init", () => {
 
 window.netlifyIdentity.on("login", (u) => {
   getAndRenderNotes();
+  formContainer.addEventListener("submit", updateOrCreateNote);
   applyBodyClass("logged-in");
 });
 
