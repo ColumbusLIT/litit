@@ -159,7 +159,7 @@ async function getAndRenderNotes() {
         if (response.status === 200) {
           return response.json();
         } 
-        if (response.status === 302){
+        if (response.status === 403){
           // Force relogin
           alert("Session expired. Please login again.")
           window.netlifyIdentity.logout()
@@ -167,7 +167,7 @@ async function getAndRenderNotes() {
         } else {
           alert("Error. Please try again later.")
           removeAnimation()
-          throw new Error(response.json().errorMessage);
+          throw new Error(JSON.stringify(response.json()));
         }
         return response.json();
       })
