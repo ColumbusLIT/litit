@@ -29,7 +29,7 @@ const FUNCTIONS = "/.netlify/functions";
 function renderNotes(arr) {
   notesContainer.innerHTML = "";
 
-  if(typeof arr !== 'array') {
+  if(Array.isArray(arr)) {
     alert('Faulty data.')
     return
   } 
