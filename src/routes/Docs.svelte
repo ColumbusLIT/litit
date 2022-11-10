@@ -1,5 +1,5 @@
 <script>
-  import DocsSection from "../Components/Docs/DocsSection.svelte";
+  import DocsSection from "./../components/Docs/DocsSection.svelte";
 </script>
 
 <div>

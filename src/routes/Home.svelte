@@ -1,6 +1,7 @@
 <script>
-  import HeroSection from "../Components/LandingPage/HeroSection.svelte";
+  import HeroSection from "../components/LandingPage/HeroSection.svelte";
   import illustration from "./../assets/images/illustration.png";
+
 </script>
 
 <div>

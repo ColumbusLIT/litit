@@ -3,29 +3,35 @@
   import logo from "./../assets/images/litit.png";
 
   import netlifyIdentity from "netlify-identity-widget";
-  import { user, redirectURL } from "./../stores/userStore.js";
+  import { user, redirectURL } from "../stores/user.js";
 
   netlifyIdentity.init();
 
   $: isLoggedIn = !!$user;
   $: username = $user !== null ? $user.username : " there!";
 
-  function handleUserAction(action) {
-    if (action === "login" || action === "signup") {
-      netlifyIdentity.open(action);
-      netlifyIdentity.on("login", (u) => {
-        user.login(u);
-        netlifyIdentity.close();
-        if ($redirectURL !== "") {
-          navigate($redirectURL);
-          redirectURL.clearRedirectURL();
-        }
-      });
-    } else if (action === "logout") {
-      navigate("/");
-      user.logout();
-      netlifyIdentity.logout();
-    }
+  function login(action = "login") {
+    netlifyIdentity.open(action);
+    netlifyIdentity.on("login", (u) => {
+      user.login(u);
+      netlifyIdentity.close();
+
+      if ($redirectURL !== "") {
+        navigate($redirectURL);
+        redirectURL.clearRedirectURL();
+      }
+    });
+  }
+
+  /* Alias */
+  function signup() {
+    login("signup");
+  }
+
+  function logout() {
+    navigate("/");
+    user.logout();
+    netlifyIdentity.logout();
   }
 </script>
 
@@ -44,19 +50,15 @@
         {#if isLoggedIn}
           <div>
             <Link to="/dashboard">Hello {username}</Link>
-              <a on:click={() => handleUserAction("logout")}
-                >Log Out</a
-              >
+            <button on:click={() => logout()}>Log Out</button>
           </div>
         {:else}
           <div>
-              <button on:click={() => handleUserAction("login")}>Log In</button>
-              <button on:click={() => handleUserAction("signup")}
-                >Sign Up</button
-              >
+            <button on:click={() => login()}>Log In</button>
+            <button on:click={() => signup()}>Sign Up</button>
           </div>
         {/if}
-          </div>
+      </div>
     </Router>
   </div>
 </header>

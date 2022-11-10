@@ -1,0 +1,36 @@
+<div class="spinner spinner-xxl" />
+
+<style>
+  /* https://turretcss.com/element/spinner/ */
+  .spinner:before {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -0.875rem;
+    margin-left: -0.875rem;
+    width: 1.75rem;
+    height: 1.75rem;
+    content: "";
+    border-radius: 50%;
+    border: 0.125rem solid rgba(0, 0, 0, 0.1);
+    border-left-color: #fff;
+    -webkit-animation: spin 0.5s linear infinite;
+    animation: spin 0.5s linear infinite;
+  }
+  .spinner-xxl:before {
+    margin-top: -1.25rem;
+    margin-left: -1.25rem;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+</style>

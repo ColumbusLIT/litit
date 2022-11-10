@@ -10,41 +10,28 @@ const client = sanityClient({
 });
 
 const handler = async (event, context) => {
-  if (!context.clientContext.user)
+  // TODO has local host issues due to cookies and CORS
+  const { identity, user } = context.clientContext;
+  console.log(identity,user)
+  const uid = event.queryStringParameters.uid;
+
+  if (!context.clientContext && !context.clientContext.identity) {
     return {
-      headers: { "Content-Type": "application/json", "x-litit-error-code":"AccessDenied" },
       statusCode: 403,
-      body:
-        JSON.stringify({ error: "Access denied" }),
-    };
-
-  const uId = context.clientContext.user.sub;
-  const uRoles = context.clientContext.user.app_metadata.roles;
-
+      body: JSON.stringify({ error: "Access denied" }),
+    }
+  }
+  if (!uid) {
   /* no user, no go */
-  if (!uId) {
-    console.log("No user!");
     return {
       statusCode: 401,
       body: JSON.stringify({
-        data: "no go",
+        data: "no user",
       }),
     };
   }
-
-  /* no basic role, no go */
-  if (uRoles[0] !== "basic") {
-    console.log("No basic role!");
-    return {
-      statusCode: 401,
-      body: JSON.stringify({
-        data: "no go",
-      }),
-    };
-  }
-
   try {
-    const query = `*[_type == "note" && references("${uId}")]{title, content, image, domain, preset, status, dateFrom, dateTo, user, _updatedAt, _id}`;
+    const query = `*[_type == "note" && references("${uid}")]{title, content, image, domain, preset, status, dateFrom, dateTo, user, _updatedAt, _id}`;
 
     let notes;
 
@@ -65,16 +52,23 @@ const handler = async (event, context) => {
         };
       });
     });
+    console.log(notes)
 
     return {
       statusCode: 200,
-      headers: { "Content-Type": "application/json" },
+      // headers: {
+      //   "Content-Type": "application/json",
+      //   "access-control-allow-origin": "http://localhost:3000",
+      // },
       body: JSON.stringify(notes),
     };
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return {
-      headers: { "Content-Type": "application/json" },
+      // headers: {
+      //   "Content-Type": "application/json",
+      //   "access-control-allow-origin": "http://localhost:3000",
+      // },
       statusCode: 500,
       body:
         error.responseBody || JSON.stringify({ error: "An error occurred" }),
