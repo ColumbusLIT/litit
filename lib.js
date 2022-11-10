@@ -1,3 +1,6 @@
+import { state, clearState, loadState, persistState } from "./app/state.js";
+console.log(state)
+persistState()
 let titleField,
   contentField,
   presetField,
@@ -50,6 +53,9 @@ function renderNotes(arr) {
   });
 
   notes.forEach((n) => {
+
+    if(state.domains.find(d => d !== n.domain )) state.domains.push(n.domain);
+
     switch (n.status) {
       case NOTE_STATUS.PUBLISHED:
         count.published++;
@@ -67,20 +73,27 @@ function renderNotes(arr) {
     newItem.classList.add(`status--${n.status}`);
     newItem.classList.add(`note`);
     newItem.setAttribute("data-edit-id", n.id);
-    let meta = document.createElement("div");
-    meta.classList.add("note-meta");
-    let title = document.createElement("span");
-    title.classList.add("note-title");
-    title.innerText = n.title;
-    let domain = document.createElement("span");
-    domain.classList.add("note-domain");
-    domain.innerText = n.domain;
-    meta.appendChild(title);
-    meta.appendChild(domain);
-    newItem.appendChild(meta);
-    let status = document.createElement("span");
-    status.classList.add("status");
-    newItem.appendChild(status);
+    newItem.innerHTML = `
+      <div class="note-meta">
+        <span class="note-title">${n.title}</span>
+        <span class="note-domain">${n.domain}</span>
+      </div>
+      <span class="status status--${n.status}"></span>
+    `
+    // let meta = document.createElement("div");
+    // meta.classList.add("note-meta");
+    // let title = document.createElement("span");
+    // title.classList.add("note-title");
+    // title.innerText = n.title;
+    // let domain = document.createElement("span");
+    // domain.classList.add("note-domain");
+    // domain.innerText = n.domain;
+    // meta.appendChild(title);
+    // meta.appendChild(domain);
+    // newItem.appendChild(meta);
+    // let status = document.createElement("span");
+    // status.classList.add("status");
+    // newItem.appendChild(status);
     newItem.addEventListener("click", getNote);
     // append to dom
     notesContainer.appendChild(newItem);
@@ -193,6 +206,8 @@ async function getAndRenderNotes() {
       })
       .then((data) => {
         if (data.length !== 0) {
+          state.setNotes(data)
+          persistState();
           renderNotes(data);
           document.querySelector("body").classList.remove("litit--no-notes");
         } else {
@@ -212,6 +227,7 @@ async function getAndRenderNotes() {
         }
       })
       .finally(() => {
+        getNote()
         removeAnimation();
       });
   }
@@ -254,10 +270,13 @@ async function deleteNote() {
   }
 }
 
-async function getNote(e) {
+async function getNote(e,overwriteId) {
   showAnimation();
-
-  const id = e.target.dataset.editId;
+  if(overwriteId){
+    notes
+  } else {
+    const id = e.target.dataset.editId;
+  }
   // active
   if (id) {
     noteElements.forEach((note) => {
@@ -321,7 +340,7 @@ function theUserId() {
 }
 
 /** Unsued */
-async function setDomain() {
+async function setPrimaryDomain() {
   showAnimation();
 
   const id = theUserId();
@@ -337,7 +356,9 @@ async function setDomain() {
       })
       .then((data) => {
         console.log(data);
-        PRIMARY_DOMAIN = data;
+        // localStorage.setItem("litit",JSON.stringify({primaryDomain:data}));
+        state.primaryDomain = data;
+        persistState();
         getAndRenderNotes();
         removeAnimation();
       });
@@ -369,6 +390,14 @@ function applyBodyClass(str) {
 // Initialisation
 window.addEventListener("DOMContentLoaded", (event) => {
   console.log("Initialize litit app");
+  
+  if(theUserId()){
+    console.log("user is logged in");
+    applyBodyClass("logged-in");
+  } else {
+    console.log("user is logged out")
+    applyBodyClass("logged-out");
+  }
 
   removeAnimation();
 
@@ -383,25 +412,20 @@ window.addEventListener("DOMContentLoaded", (event) => {
   notesContainer = document.getElementById("notes");
 
   window.netlifyIdentity.on("init", () => {
-    console.log("checking netlifyIdentity");
-    if(window.netlifyIdentity.currentUser()){
-      console.log("user is logged in");
-      applyBodyClass("logged-in");
-    } else {
-      console.log("user is logged out")
-      applyBodyClass("logged-out");
-    }
+    console.log("checking netlifyIdentity",window.netlifyIdentity.currentUser(),theUserId());
   });
 
   window.netlifyIdentity.on("login", () => {
     console.log("user logged in");
     applyBodyClass("logged-in");
     getAndRenderNotes();
+    setPrimaryDomain();
     formContainer.addEventListener("submit", updateOrCreateNote);
   });
 
   window.netlifyIdentity.on("logout", () => {
     console.log("user logged out");
+    PRIMARY_DOMAIN
     applyBodyClass("logged-out");
   });
 });
