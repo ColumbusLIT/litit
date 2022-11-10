@@ -69,88 +69,16 @@ code {
 p {
   margin-bottom: 3rem;
 }
-.notification {
-  font-size: 0.8rem;
-  /* border-bottom: 1px solid var(--color); */
-  text-align: center;
-  background: var(--dark-900);
-  color: var(--light);
-  padding: 1rem;
-}
-header {
-  border-bottom: 1px solid var(--grey-200);
-  position: sticky;
-  top: 0;
-  background-color: var(--light-200);
-}
-header > div {
-  display: flex;
-  margin: 0 auto;
-  gap: 2rem;
-  align-items: stretch;
-  width: var(--content-width);
-}
-header a.page-title {
-  font-size: 2rem;
-  padding: 0 1rem;
-  display: flex;
-  font-family: var(--headlines);
-  justify-content: center;
-  align-items: center;
-}
-header a.page-title img {
-  height: 0.8rem;
-}
-header a.page-title:hover {
-  text-decoration: none;
-  color: var(--color);
-}
-header nav.menu {
-  flex: 1;
-  padding: 1rem;
-  padding-left: 3rem;
-  border-left: 1px solid var(--grey-200);
-  display: flex;
-  align-items: center;
-}
-header .badge {
-  display: flex;
-  align-items: center;
-  padding: 0 1rem;
-}
-header .menu a {
-  margin-right: 4rem;
-}
-header .menu a.active {
-  margin-right: 4rem;
-  color: var(--second);
-}
 
-footer {
-  padding: 4rem;
-  text-align: center;
-}
+
+
 section {
   margin: 0 auto;
   padding: 0 1rem;
   width: calc(var(--content-width) - 2rem);
 }
 
-.hero {
-  display: flex;
-  height: 60vh;
-  align-items: center;
-  gap: 5rem;
-  justify-content: center;
-}
-.hero p {
-  margin-bottom: 1rem;
-}
-.hero h2,
-.hero h3,
-.hero h1 {
-  margin-bottom: 1rem;
-}
+
 
 .form {
   margin-top: 2rem;
