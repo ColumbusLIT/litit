@@ -1,6 +1,6 @@
 import { state, clearState, loadState, persistState } from "./app/state.js";
-console.log(state)
-persistState()
+console.log(state);
+persistState();
 let titleField,
   contentField,
   presetField,
@@ -53,8 +53,7 @@ function renderNotes(arr) {
   });
 
   notes.forEach((n) => {
-
-    if(state.domains.find(d => d !== n.domain )) state.domains.push(n.domain);
+    if (state.domains.find((d) => d !== n.domain)) state.domains.push(n.domain);
 
     switch (n.status) {
       case NOTE_STATUS.PUBLISHED:
@@ -68,18 +67,18 @@ function renderNotes(arr) {
         break;
     }
 
-    let newItem = document.createElement("a");
-    newItem.id = n.id;
-    newItem.classList.add(`status--${n.status}`);
-    newItem.classList.add(`note`);
-    newItem.setAttribute("data-edit-id", n.id);
-    newItem.innerHTML = `
-      <div class="note-meta">
-        <span class="note-title">${n.title}</span>
-        <span class="note-domain">${n.domain}</span>
-      </div>
-      <span class="status status--${n.status}"></span>
-    `
+    // newItem.id = n.id;
+    // newItem.classList.add(`status--${n.status}`);
+    // newItem.classList.add(`note`);
+    // newItem.setAttribute("data-edit-id", n.id);
+    html = `<a class="notes status--${n.status}" onclick="getNote(${n.id})" data-edit-id="${n.id}" id="${id}">
+        <div class="note-meta">
+          <span class="note-title">${n.title}</span>
+          <span class="note-domain">${n.domain}</span>
+        </div>
+        <span class="status status--${n.status}"></span>
+      </a>
+    `;
     // let meta = document.createElement("div");
     // meta.classList.add("note-meta");
     // let title = document.createElement("span");
@@ -94,9 +93,10 @@ function renderNotes(arr) {
     // let status = document.createElement("span");
     // status.classList.add("status");
     // newItem.appendChild(status);
-    newItem.addEventListener("click", getNote);
+    // newItem.addEventListener("click", getNote);
     // append to dom
-    notesContainer.appendChild(newItem);
+    // notesContainer.appendChild(newItem);
+    notesContainer.insertAdjacentHTML('beforeend', html);
   });
   noteElements = notesContainer.querySelectorAll(".note");
 
@@ -206,7 +206,7 @@ async function getAndRenderNotes() {
       })
       .then((data) => {
         if (data.length !== 0) {
-          state.setNotes(data)
+          state.setNotes(data);
           persistState();
           renderNotes(data);
           document.querySelector("body").classList.remove("litit--no-notes");
@@ -227,7 +227,7 @@ async function getAndRenderNotes() {
         }
       })
       .finally(() => {
-        getNote()
+        getNote();
         removeAnimation();
       });
   }
@@ -270,10 +270,10 @@ async function deleteNote() {
   }
 }
 
-async function getNote(e,overwriteId) {
+async function getNote(e, overwriteId) {
   showAnimation();
-  if(overwriteId){
-    notes
+  if (overwriteId) {
+    notes;
   } else {
     const id = e.target.dataset.editId;
   }
@@ -390,12 +390,12 @@ function applyBodyClass(str) {
 // Initialisation
 window.addEventListener("DOMContentLoaded", (event) => {
   console.log("Initialize litit app");
-  
-  if(theUserId()){
+
+  if (theUserId()) {
     console.log("user is logged in");
     applyBodyClass("logged-in");
   } else {
-    console.log("user is logged out")
+    console.log("user is logged out");
     applyBodyClass("logged-out");
   }
 
@@ -412,7 +412,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
   notesContainer = document.getElementById("notes");
 
   window.netlifyIdentity.on("init", () => {
-    console.log("checking netlifyIdentity",window.netlifyIdentity.currentUser(),theUserId());
+    console.log(
+      "checking netlifyIdentity",
+      window.netlifyIdentity.currentUser(),
+      theUserId()
+    );
   });
 
   window.netlifyIdentity.on("login", () => {
@@ -425,7 +429,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
   window.netlifyIdentity.on("logout", () => {
     console.log("user logged out");
-    PRIMARY_DOMAIN
+    PRIMARY_DOMAIN;
     applyBodyClass("logged-out");
   });
 });
