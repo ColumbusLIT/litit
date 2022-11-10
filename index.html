@@ -12,132 +12,13 @@
     <!-- <link rel="stylesheet" href="css/colors.css" />
     <link rel="stylesheet" href="css/elements.css" /> -->
 
-    <link rel="stylesheet" href="css/style.css" />
+    <!-- <link rel="stylesheet" href="css/style.css" /> -->
   </head>
-  <body class="logged-out">
-    <div class="notification">
-      <span
-        >Beta Version. Please feel free to contact us for any bugs you
-        encounter.</span
-      >
-    </div>
+  <body>
+    
+   
 
-    <header>
-      <div>
-        <a class="page-title" href="/"
-          ><img class="logo" src="images/litit.png" alt="icon"
-        /></a>
-        <nav class="menu hide-md">
-          <a href="#HowItWorks" class="active">How it works</a>
-          <a href="https://litit-demo.netlify.app">Demo</a>
-        </nav>
-        <div class="badge">
-          <div class="data-netlify" data-netlify-identity-menu></div>
-        </div>
-      </div>
-    </header>
-
-    <main class="app">
-
-      <div class="landing-page">
-        <section class="hero">
-          <div>
-            <h1>When doctors become patients, we let your patience know.</h1>
-            <p>Real-time notifications on your website</p>
-            <button>GET STARTED</button>
-          </div>
-          <div>
-            <img src="images/illustration.png" alt="We care" />
-          </div>
-        </section>
-      </div>
-      
-
-      <section class="account">
-        <div class="account-header">
-          <div>Notification Boxes <mark id="count">0</mark></div>
-          <button class="menu-new-button" onclick="clearForm()">+ New</button>
-        </div>
-        <div class="account-body">
-          <nav class="menu">
-            <div id="notes">
-              <!-- notes get rendered here -->
-            </div>
-          </nav>
-          <form class="form" id="form" data-note-id="">
-            <label>
-              <span class="label-name">Domain</span
-              ><a
-                class="label-description"
-                href="https://acme.com"
-                target="_blank"
-                id="domain-link"
-                >Visit</a
-              >
-              <input
-                type="text"
-                id="domain"
-                name="domain"
-                minlength="5"
-                maxlength="50"
-                value=""
-                required
-                pattern="^(([a-zA-Z]{1})|([a-zA-Z]{1}[a-zA-Z]{1})|([a-zA-Z]{1}[0-9]{1})|([0-9]{1}[a-zA-Z]{1})|([a-zA-Z0-9][a-zA-Z0-9-_]{1,61}[a-zA-Z0-9]))\.([a-zA-Z]{2,6}|[a-zA-Z0-9-]{2,30}\.[a-zA-Z]{2,3})$"
-                placeholder="acme.com"
-              />
-            </label>
-            <label>
-              <span class="label-name">Title</span>
-              <input
-                type="text"
-                id="title"
-                name="title"
-                maxlength="40"
-                value=""
-                required
-                placeholder="Title"
-              />
-            </label>
-            <label>
-              <span class="label-name">Content</span>
-              <textarea id="content" rows="6" required></textarea>
-            </label>
-            <label class="select" for="preset">
-              <span class="label-name">Preset</span>
-              <select id="preset">
-                <option value="default">Default</option>
-                <option value="unstyled">Unstyled</option>
-              </select>
-            </label>
-            <label>
-              <span class="label-name">Status</span>
-              <select id="status">
-                <option value="published" selected>Published</option>
-                <option value="draft">Draft</option>
-                <option value="archived">Archived</option>
-              </select>
-            </label>
-            <button type="submit" class="button--save">
-              SAVE
-            </button>
-            <button onclick="deleteNote()" class="button--delete">DELETE</button>
-          </div>
-        </form>
-      </section>
-    </main>
-
-    <div id="animation">
-      <div class="spinner spinner-xxl"></div>
-    </div>
-
-    <footer>
-      <div>&copy; 2022 LIT IT</div>
-    </footer>
-    <script
-      type="text/javascript"
-      src="https://identity.netlify.com/v1/netlify-identity-widget.js"
-    ></script>
-    <script src="lib.js" type="module"></script>
-    <script src="app/state.js" type="module"></script>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>

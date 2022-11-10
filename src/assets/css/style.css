@@ -1,0 +1,383 @@
+@import "colors.css";
+@import "fonts.css";
+@import "elements.css";
+:root {
+  /* Responsive Widths */
+  --content-width: min(100%, 72rem);
+  --form-width: min(100%, 34rem);
+
+  /* Fonts */
+  --copy: -apple-system, --system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  --headlines: "PlayfairDisplay-Regular", var(--copy);
+  --source: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+html {
+  font-size: 16px;
+}
+body {
+  margin: 0;
+  font-family: var(--copy);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 1rem;
+  line-height: 1.3;
+  color: var(--dark-900);
+  background: var(--light-200);
+}
+p,
+div,
+th,
+td,
+li,
+footer,
+header,
+main {
+  font-family: var(--copy);
+  font-size: 1rem;
+}
+a {
+  color: var(--dark-500);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--primary-hover);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--headlines);
+  color: var(--dark-800);
+  font-weight: 400;
+  letter-spacing: 0.05rem;
+  font-size: 2rem;
+}
+b,
+strong {
+  font-weight: 400;
+}
+
+code {
+  font-family: var(--source);
+}
+p {
+  margin-bottom: 3rem;
+}
+.notification {
+  font-size: 0.8rem;
+  /* border-bottom: 1px solid var(--color); */
+  text-align: center;
+  background: var(--dark-900);
+  color: var(--light);
+  padding: 1rem;
+}
+header {
+  border-bottom: 1px solid var(--grey-200);
+  position: sticky;
+  top: 0;
+  background-color: var(--light-200);
+}
+header > div {
+  display: flex;
+  margin: 0 auto;
+  gap: 2rem;
+  align-items: stretch;
+  width: var(--content-width);
+}
+header a.page-title {
+  font-size: 2rem;
+  padding: 0 1rem;
+  display: flex;
+  font-family: var(--headlines);
+  justify-content: center;
+  align-items: center;
+}
+header a.page-title img {
+  height: 0.8rem;
+}
+header a.page-title:hover {
+  text-decoration: none;
+  color: var(--color);
+}
+header nav.menu {
+  flex: 1;
+  padding: 1rem;
+  padding-left: 3rem;
+  border-left: 1px solid var(--grey-200);
+  display: flex;
+  align-items: center;
+}
+header .badge {
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+}
+header .menu a {
+  margin-right: 4rem;
+}
+header .menu a.active {
+  margin-right: 4rem;
+  color: var(--second);
+}
+
+footer {
+  padding: 4rem;
+  text-align: center;
+}
+section {
+  margin: 0 auto;
+  padding: 0 1rem;
+  width: calc(var(--content-width) - 2rem);
+}
+
+.hero {
+  display: flex;
+  height: 60vh;
+  align-items: center;
+  gap: 5rem;
+  justify-content: center;
+}
+.hero p {
+  margin-bottom: 1rem;
+}
+.hero h2,
+.hero h3,
+.hero h1 {
+  margin-bottom: 1rem;
+}
+
+.form {
+  margin-top: 2rem;
+  width: var(--form-width);
+}
+label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  gap: 0.5rem;
+}
+label .label-name {
+  font-weight: 700;
+}
+label .label-description {
+  font-size: 0.8rem;
+  color: var(--grey-500);
+}
+input,
+textarea,
+select {
+  font-family: var(--copy);
+  border-radius: 2px;
+  line-height: 2rem;
+  background-color: transparent;
+  border: 1px solid var(--grey-300);
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+input:hover,
+textarea:hover,
+select:hover {
+  border: 1px solid var(--dark-900);
+}
+input:focus,
+textarea:focus,
+select:focus {
+  background-color: var(--light-50);
+  border: 1px solid var(--primary-500);
+}
+input[name="title"] {
+  font-family: var(--headlines);
+  font-size: 2rem;
+}
+input:invalid,textarea:invalid {
+  border: 1px solid var(--error-500);
+}
+input:valid,textarea:valid {
+  /* border: 1px solid var(--success-500); */
+}
+
+button {
+  padding: 0.5rem;
+  border-radius: 2px;
+  color: var(--light-100);
+  font-weight: bold;
+  font-family: inherit;
+  background-color: var(--primary);
+  border-width: 0px;
+  border-style: solid;
+  border-color: black;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--primary-hover);
+  transition: 0.2s;
+}
+
+button.button--delete {
+  background-color: var(--error-500);
+}
+button.button--delete:hover {
+  background-color: var(--error-hover);
+}
+
+/* Legacy from her down */
+
+.log {
+  padding: 1rem;
+}
+
+li {
+  list-style: none;
+}
+
+ul {
+  padding: 0;
+}
+
+.account {
+
+}
+.account .account-header {
+  font-family: var(--copy);
+  color: var(--dark-800);
+  display: flex;
+  font-weight: 400;
+  /* letter-spacing: 0.05rem; */
+  font-size: 1rem;
+  border-bottom: 1px solid var(--grey-200);
+  padding: 1rem 0;
+  width: var(--content-width);
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-between;
+}
+.account-body {
+  display: flex;
+  gap: 1rem;
+}
+.account .menu {
+  border-right: 1px solid var(--grey-200);
+  padding-right: 1rem;
+  width: 22rem;
+  margin-top: 2rem;
+}
+.account .menu a {
+  min-height: 3rem;
+  display: flex;
+  border-radius: 2px;
+  padding: 0 1rem;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
+.account .menu a:hover {
+  background-color: var(--primary-500);
+  color: var(--background);
+}
+
+#notes {
+  margin: 0;
+}
+.account .menu a.note .note-meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  pointer-events: none;
+}
+
+.account .menu a.note .note-meta .note-title {
+  pointer-events: none;
+}
+.account .menu a.note .note-meta .note-domain {
+  font-size: 0.8rem;
+  opacity: 0.67;
+  pointer-events: none;
+}
+.account .menu a.note .status {
+  flex: 0 0 1rem;
+  height: 1rem;
+  margin-top: 1rem;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.account .menu a.note.active {
+  background-color: var(--primary-500);
+  color: var(--background);
+}
+
+.status--draft .status {
+  background-color: var(--secondary-500);
+}
+.status--archived .status {
+  background-color: var(--grey-500);
+}
+.status--published .status {
+  background-color: var(--success-500);
+}
+
+body.logged-in .landing-page {
+  display: none;
+}
+
+body.logged-out .account {
+  display: none;
+}
+
+/* Netlify Identity */
+.netlify-identity-menu {
+  margin: 0;
+}
+.data-netlify li {
+  margin: 0;
+  margin-left: 3rem;
+}
+
+.data-netlify li {
+  display: inline-block;
+}
+
+#animation {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100000;
+  background-color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 991px) {
+  .hide-lg {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .hide-md {
+    /* start of medium tablet styles */
+    display: none !important;
+  }
+  .hero > div {
+    flex-direction: column;
+  }
+  .account-body {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  /* start of phone styles */
+  .hide-sm {
+    display: none !important;
+  }
+}
