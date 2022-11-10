@@ -1,6 +1,32 @@
 <script>
-  import { Router, Link } from "svelte-routing";
+  import { Router, Link, navigate } from "svelte-routing";
   import logo from "./../assets/images/litit.png";
+
+  import netlifyIdentity from "netlify-identity-widget";
+  import { user, redirectURL } from "./../stores/userStore.js";
+
+  netlifyIdentity.init();
+
+  $: isLoggedIn = !!$user;
+  $: username = $user !== null ? $user.username : " there!";
+
+  function handleUserAction(action) {
+    if (action === "login" || action === "signup") {
+      netlifyIdentity.open(action);
+      netlifyIdentity.on("login", (u) => {
+        user.login(u);
+        netlifyIdentity.close();
+        if ($redirectURL !== "") {
+          navigate($redirectURL);
+          redirectURL.clearRedirectURL();
+        }
+      });
+    } else if (action === "logout") {
+      navigate("/");
+      user.logout();
+      netlifyIdentity.logout();
+    }
+  }
 </script>
 
 <header>
@@ -14,9 +40,23 @@
         <a class="link" href="https://litit-demo.netlify.app">Demo</a>
         <Link class="link" to="/dashboard">Dashboard</Link>
       </nav>
-      <div class="badge">
-        <div class="data-netlify" data-netlify-identity-menu />
-      </div>
+      <div class="account-menu">
+        {#if isLoggedIn}
+          <div>
+            <Link to="/dashboard">Hello {username}</Link>
+              <a on:click={() => handleUserAction("logout")}
+                >Log Out</a
+              >
+          </div>
+        {:else}
+          <div>
+              <button on:click={() => handleUserAction("login")}>Log In</button>
+              <button on:click={() => handleUserAction("signup")}
+                >Sign Up</button
+              >
+          </div>
+        {/if}
+          </div>
     </Router>
   </div>
 </header>
@@ -64,7 +104,7 @@
     display: flex;
     align-items: center;
   }
-  .badge {
+  .account-menu {
     display: flex;
     align-items: center;
     padding: 0 1rem;
