@@ -248,7 +248,7 @@ function fillForm(note) {
 async function deleteNote() {
   showAnimation();
 
-  const id = formContainer.dataset.noteId;
+  let id = formContainer.dataset.noteId;
   if (!id) {
     alert("A new message can not be deleted");
     return;
@@ -274,7 +274,7 @@ async function deleteNote() {
 
 async function getNote(e, overwriteId) {
   showAnimation();
-  const id = null;
+  let id;
   if (overwriteId) {
     id = overwriteId;
   } else 
