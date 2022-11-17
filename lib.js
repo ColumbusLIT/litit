@@ -156,12 +156,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
   if (theUserId()) {
     console.log("user is logged in");
-    toggleBodyClass("logged-in");
+    document.querySelector('body').classList.add("logged-in");
     getNote();
     formContainer.addEventListener("submit", updateNote);
   } else {
     console.log("user is logged out");
-    toggleBodyClass("logged-in");
+    document.querySelector('body').classList.remove("logged-in");
   }
 
   removeAnimation();

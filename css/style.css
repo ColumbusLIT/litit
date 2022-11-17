@@ -81,12 +81,14 @@ header {
   border-bottom: 1px solid var(--grey-200);
   position: sticky;
   top: 0;
+  z-index: 1;
   background-color: var(--light-200);
 }
 header > div {
   display: flex;
   margin: 0 auto;
   gap: 2rem;
+  height: 4rem;
   align-items: stretch;
   width: var(--content-width);
 }
@@ -247,6 +249,9 @@ ul {
   color: var(--dark-800);
   display: flex;
   font-weight: 400;
+  position: sticky;
+  top: 4rem;
+  background-color: var(--light-200);
   /* letter-spacing: 0.05rem; */
   font-size: 1rem;
   border-bottom: 1px solid var(--grey-200);
@@ -257,8 +262,8 @@ ul {
   justify-content: space-between;
 }
 .account-body {
-  margin-top: 2rem;
   width: var(--form-width);
+  margin: 2rem auto;
 }
 .account .menu {
   border-right: 1px solid var(--grey-200);
