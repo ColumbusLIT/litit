@@ -34,23 +34,14 @@ const handler = async (event, context) => {
       }),
     };
   }
-  /* no id, no go */
-  if (!id) {
-    return {
-      statusCode: 401,
-      body: JSON.stringify({
-        data: "no sanity user id",
-      }),
-    };
-  }
 
   try {
-    const query = `*[_id == "${id}"][0]{domain}`;
+    const query = `*[_type == "domain" && references("${uId}")][0]{_id, title, url}`;
 
     let domain;
 
     await client.fetch(query).then((r) => {
-      domain = r.domain
+      domain = r
     });
 
     return {

@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body class="logged-out">
+  <body class="no-note">
     <div class="notification">
       <span
         >Beta Version. Please feel free to contact us for any bugs you
@@ -54,8 +54,8 @@
       <section class="account">
         <form class="form" id="form" data-note-id="">
           <div class="account-header">
-            <div>My notification box </div>
-            <!-- <button class="menu-new-button" onclick="clearForm()">+ New</button> -->
+            <div>My notification box</div>
+            <button type="submit" class="button--save">SAVE</button>
           </div>
           <div class="account-body">
             <nav class="menu">
@@ -116,12 +116,13 @@
                 <option value="archived">Archived</option>
               </select>
             </label>
-            <button type="submit" class="button--save">SAVE</button>
-            <button onclick="deleteNote()" class="button--delete">
-              DELETE
-            </button>
+            
           </div>
         </form>
+      </section>
+
+      <section class="message message--not-verified">
+        <p>Please contact our support team to verify your account!</p>
       </section>
     </main>
 

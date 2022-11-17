@@ -152,7 +152,6 @@ section {
   margin-bottom: 1rem;
 }
 
-
 label {
   display: flex;
   flex-direction: column;
@@ -192,10 +191,12 @@ input[name="title"] {
   font-family: var(--headlines);
   font-size: 2rem;
 }
-input:invalid,textarea:invalid {
+input:invalid,
+textarea:invalid {
   border: 1px solid var(--error-500);
 }
-input:valid,textarea:valid {
+input:valid,
+textarea:valid {
   /* border: 1px solid var(--success-500); */
 }
 
@@ -239,7 +240,6 @@ ul {
 }
 
 .account {
-
 }
 
 .account .account-header {
@@ -320,12 +320,21 @@ ul {
   background-color: var(--success-500);
 }
 
+.message {
+  display: none;
+}
 body.logged-in .landing-page {
   display: none;
 }
 
-body.logged-out .account {
+body.logged-in.no-note .account {
   display: none;
+}
+body:not(.logged-in) .account {
+  display: none;
+}
+body.logged-in.no-note .message {
+  display: block;
 }
 
 /* Netlify Identity */

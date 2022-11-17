@@ -36,26 +36,12 @@ const handler = async (event, context) => {
   }
 
   try {
-    const query = `*[_type=="note" && references($uId)]{title, content, image, domain, preset, status, dateFrom, dateTo, belongsTo->, _updatedAt, _id}`;
+    const query = `*[_type=="note" && references("${uId}")]{title, content, image, domain, preset, status, dateFrom, dateTo, belongsTo->, _updatedAt, _id}[0]`;
 
-    let notes;
+    let note;
 
     await client.fetch(query).then((r) => {
-      notes = r.map((n) => {
-        return {
-          title: n.title,
-          content: n.content,
-          image: n.image,
-          domain: n.domain,
-          preset: n.preset,
-          status: n.status,
-          dateFrom: n.dateFrom,
-          dateTo: n.dateTo,
-          belongsTo: n.belongsTo,
-          updated: n._updatedAt,
-          id: n._id,
-        };
-      });
+      note = r
     });
 
     return {
@@ -64,7 +50,7 @@ const handler = async (event, context) => {
         "Content-Type": "application/json",
         "access-control-allow-origin": "*",
       },
-      body: JSON.stringify(notes[0]),
+      body: JSON.stringify(note),
     };
   } catch (error) {
     return {
