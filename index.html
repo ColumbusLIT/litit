@@ -38,7 +38,6 @@
     </header>
 
     <main class="app">
-
       <div class="landing-page">
         <section class="hero">
           <div>
@@ -51,20 +50,19 @@
           </div>
         </section>
       </div>
-      
 
       <section class="account">
-        <div class="account-header">
-          <div>Notification Boxes <mark id="count">0</mark></div>
-          <button class="menu-new-button" onclick="clearForm()">+ New</button>
-        </div>
-        <div class="account-body">
-          <nav class="menu">
-            <div id="notes">
-              <!-- notes get rendered here -->
-            </div>
-          </nav>
-          <form class="form" id="form" data-note-id="">
+        <form class="form" id="form" data-note-id="">
+          <div class="account-header">
+            <div>My notification box </div>
+            <!-- <button class="menu-new-button" onclick="clearForm()">+ New</button> -->
+          </div>
+          <div class="account-body">
+            <nav class="menu">
+              <div id="notes">
+                <!-- notes get rendered here -->
+              </div>
+            </nav>
             <label>
               <span class="label-name">Domain</span
               ><a
@@ -117,10 +115,10 @@
                 <option value="archived">Archived</option>
               </select>
             </label>
-            <button type="submit" class="button--save">
-              SAVE
+            <button type="submit" class="button--save">SAVE</button>
+            <button onclick="deleteNote()" class="button--delete">
+              DELETE
             </button>
-            <button onclick="deleteNote()" class="button--delete">DELETE</button>
           </div>
         </form>
       </section>
