@@ -1,6 +1,8 @@
 import { state, clearState, loadState, persistState } from "./app/state.js";
 console.log(state);
 const App = () => {
+  let {notes,primaryDomain,setNotes,setPrimaryDomain, setSelectedNote} = state;
+
   persistState();
   let titleField,
     contentField,
@@ -358,7 +360,7 @@ const App = () => {
   /**
    * 
    */
-  const setPrimaryDomain = async () => {
+  const getPrimaryDomain = async () => {
     showAnimation();
 
     const id = theUserId();
@@ -413,7 +415,7 @@ const App = () => {
       console.log("user is logged in");
       applyBodyClass("logged-in");
       getAndRenderNotes();
-      setPrimaryDomain();
+      getPrimaryDomain();
       formContainer.addEventListener("submit", updateOrCreateNote);
     } else {
       console.log("user is logged out");
@@ -444,13 +446,13 @@ const App = () => {
       console.log("user logged in");
       applyBodyClass("logged-in");
       getAndRenderNotes();
-      setPrimaryDomain();
+      getPrimaryDomain();
       formContainer.addEventListener("submit", updateOrCreateNote);
     });
 
     window.netlifyIdentity.on("logout", () => {
       console.log("user logged out");
-      setPrimaryDomain();
+      getPrimaryDomain();
       applyBodyClass("logged-out");
     });
   });

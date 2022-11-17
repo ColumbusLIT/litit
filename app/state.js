@@ -5,6 +5,9 @@ export let state = {
     state.notes = notes;
   },
   selectedNote: null,
+  setSelectedNote: (note) => {
+    state.selectedNote = note
+  },
   domains: [],
   setDomains: (domains) => {
     state.domains = domains;
