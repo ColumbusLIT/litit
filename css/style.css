@@ -152,10 +152,7 @@ section {
   margin-bottom: 1rem;
 }
 
-.form {
-  margin-top: 2rem;
-  width: var(--form-width);
-}
+
 label {
   display: flex;
   flex-direction: column;
@@ -244,6 +241,7 @@ ul {
 .account {
 
 }
+
 .account .account-header {
   font-family: var(--copy);
   color: var(--dark-800);
@@ -259,8 +257,8 @@ ul {
   justify-content: space-between;
 }
 .account-body {
-  display: flex;
-  gap: 1rem;
+  margin-top: 2rem;
+  width: var(--form-width);
 }
 .account .menu {
   border-right: 1px solid var(--grey-200);

@@ -176,8 +176,13 @@ const App = () => {
         })
         .then((data) => {
           console.log(data);
-          fillForm(data);
-          setSelectedNote(data);
+          if(data.length > 0){
+            fillForm(data);
+            setSelectedNote(data);
+          } else {
+            alert('Please contact your administrator to verify your account.')
+            applyBodyClass('not-verified')
+          }
           removeAnimation();
         });
     }
@@ -285,7 +290,7 @@ const App = () => {
     if (theUserId()) {
       console.log("user is logged in");
       applyBodyClass("logged-in");
-      getAndRenderNotes();
+      getNote();
       getPrimaryDomain();
       formContainer.addEventListener("submit", updateNote);
     } else {
