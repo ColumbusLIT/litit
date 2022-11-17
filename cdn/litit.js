@@ -17,16 +17,16 @@ function renderNote (data){
   content.innerHTML = data.content;
   newNote.append(content);
   
-  let author = document.createElement("span");
-  author.classList.add(`litit-updated`);
-  author.innerHTML = data.belongsTo.fullName;
-  newNote.append(author);
-  container.appendChild(newNote);
-
   let updated = document.createElement("span");
   updated.classList.add(`litit-updated`);
   updated.innerHTML = dayjs(data.updated);
   newNote.append(updated);
+  container.appendChild(newNote);
+  
+  let author = document.createElement("span");
+  author.classList.add(`litit-updated`);
+  author.innerHTML = " by " + data.belongsTo.fullName;
+  newNote.append(author);
   container.appendChild(newNote);
 }
 
