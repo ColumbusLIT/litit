@@ -71,7 +71,7 @@ function renderNotes(arr) {
     // newItem.classList.add(`status--${n.status}`);
     // newItem.classList.add(`note`);
     // newItem.setAttribute("data-edit-id", n.id);
-    html = `<a class="notes status--${n.status}" onclick="getNote(${n.id})" data-edit-id="${n.id}" id="${id}">
+    html = `<a class="notes status--${n.status}" onclick="getNote(null,${n.id})" data-edit-id="${n.id}" id="${id}">
         <div class="note-meta">
           <span class="note-title">${n.title}</span>
           <span class="note-domain">${n.domain}</span>
@@ -165,7 +165,7 @@ async function createNote() {
       console.log(r);
       if (r.ok) {
         getAndRenderNotes();
-        getNote(r.data.id);
+        getNote(null,r.data.id);
       }
       if (!r.ok) {
         alert("Something is messed up. You could try logging out and back in.");
@@ -272,10 +272,11 @@ async function deleteNote() {
 
 async function getNote(e, overwriteId) {
   showAnimation();
+  const id = null;
   if (overwriteId) {
-    notes;
+    id = overwriteId;
   } else {
-    const id = e.target.dataset.editId;
+    id = e.target.dataset.editId;
   }
   // active
   if (id) {
