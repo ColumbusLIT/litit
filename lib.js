@@ -40,19 +40,21 @@ function renderNotes(arr) {
     return;
   }
   let notes = arr.filter((n) => n.title.length > 0);
-
+  
   let count = {
     draft: 0,
     published: 0,
     archived: 0,
   };
-
+  
   // Sort by date
   notes.sort((a, b) => {
     return new Date(b.date) - new Date(a.date);
   });
-
-  notes.forEach((n) => {
+  // Add to state
+  state.notes = notes;
+  
+  state.notes.forEach((n) => {
     if (state.domains.find((d) => d !== n.domain)) state.domains.push(n.domain);
 
     switch (n.status) {
@@ -100,7 +102,7 @@ function renderNotes(arr) {
   });
   noteElements = notesContainer.querySelectorAll(".note");
 
-  countBadge.innerText = notes.length;
+  countBadge.innerText = state.notes.length;
 }
 
 function clearForm() {
@@ -275,8 +277,12 @@ async function getNote(e, overwriteId) {
   const id = null;
   if (overwriteId) {
     id = overwriteId;
-  } else {
+  } else 
+  if (e.target) {
     id = e.target.dataset.editId;
+  }
+  else {
+    id = state.notes[0].id
   }
   // active
   if (id) {
