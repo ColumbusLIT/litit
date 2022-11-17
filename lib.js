@@ -107,6 +107,7 @@ const App = () => {
       createNote();
     }
   };
+
   /**
    * Get api request params for url
    * @param {*} params
@@ -133,98 +134,7 @@ const App = () => {
       status: statusField.value,
     };
   };
-
-  /**
-   * Takes text value from DOM input
-   * and sends it to {@function netlify/functions/create-note} with token
-   * If ok calls {@function renderNotes} otherwise alerts error
-   * Zeros out DOM input
-   */
-  const createNote = async () => {
-    showAnimation();
-
-    let params = getParams();
-    var queryString = getQueryString(params);
-
-    if (netlifyIdentity.currentUser() !== null) {
-      await fetch(`${FUNCTIONS}/create-note?${queryString}`, {
-        headers: {
-          Authorization: `Bearer ${theToken()}`,
-        },
-      }).then((r) => {
-        removeAnimation();
-        console.log(r);
-        if (r.ok) {
-          getAndRenderNotes();
-          getNote(null, r.data.id);
-        }
-        if (!r.ok) {
-          alert(
-            "Something is messed up. You could try logging out and back in."
-          );
-        }
-      });
-    }
-
-    clearForm();
-  };
-
-  /**
-   * Orders the getting and rendering
-   * of the users notes by calling
-   * {@function netlify/functions/notes} and
-   * passes result to {@function renderNotes}
-   */
-  const getAndRenderNotes = async () => {
-    showAnimation();
-    document.querySelector("body").classList.add("litit--no-notes");
-
-    if (netlifyIdentity.currentUser() !== null) {
-      await fetch(`${FUNCTIONS}/notes`, {
-        headers: {
-          Authorization: `Bearer ${theToken()}`,
-        },
-      })
-        .then((response) => {
-          if (response.status === 200) {
-            return response.json();
-          }
-          /* Errors */
-          if (response.status === 403) {
-            throw new Error(ERRORS.AccessDenied);
-          } else {
-            console.log(JSON.stringify(response));
-            throw new Error(ERRORS.UnknownError);
-          }
-        })
-        .then((data) => {
-          if (data.length !== 0) {
-            state.setNotes(data);
-            persistState();
-            renderNotes();
-            document.querySelector("body").classList.remove("litit--no-notes");
-          } else {
-            countBadge.innerText = 0;
-          }
-        })
-        .catch((error) => {
-          document.querySelector("body").classList.add("litit--no-notes");
-          if (error === ERRORS.SessionExpired) {
-            alert("Your session expired. Please, login again.");
-            window.netlifyIdentity.logout();
-          }
-          if (error === ERRORS.UnknownError) {
-            alert(
-              "Unknown Error. Try reloading the page or login out and in again."
-            );
-          }
-        })
-        .finally(() => {
-          getNote();
-          removeAnimation();
-        });
-    }
-  };
+  
 
   /**
    * Fill form with data
@@ -241,51 +151,11 @@ const App = () => {
   };
 
   /**
-   * Delete form
-   * @returns void
+   * Get note for the user logged in
    */
-  const deleteNote = async () => {
+  const getNote = async () => {
     showAnimation();
-    let id = formContainer.dataset.noteId;
-    if (!id) {
-      alert("A new message can not be deleted");
-      return;
-    }
-    if (netlifyIdentity.currentUser() !== null) {
-      await fetch(`${FUNCTIONS}/delete-note?id=${id}`, {
-        headers: {
-          Authorization: `Bearer ${theToken()}`,
-        },
-      }).then((r) => {
-        removeAnimation();
 
-        if (r.ok) {
-          clearForm();
-          getAndRenderNotes();
-        }
-        if (!r.ok) {
-          alert(
-            "Something is messed up. You could try logging out and back in."
-          );
-        }
-      });
-    }
-  };
-  /**
-   *
-   * @param {*} e
-   * @param {*} overwriteId
-   */
-  const getNote = async (e, overwriteId) => {
-    showAnimation();
-    let id;
-    if (overwriteId) {
-      id = overwriteId;
-    } else if (e) {
-      id = e.target.dataset.editId;
-    } else {
-      id = state.notes[0].id;
-    }
     // active
     if (id) {
       noteElements.forEach((note) => {
@@ -296,7 +166,7 @@ const App = () => {
 
     // load note to form
     if (netlifyIdentity.currentUser() !== null) {
-      await fetch(`${FUNCTIONS}/note?id=${id}`, {
+      await fetch(`${FUNCTIONS}/note`, {
         headers: {
           Authorization: `Bearer ${theToken()}`,
         },
@@ -307,6 +177,7 @@ const App = () => {
         .then((data) => {
           console.log(data);
           fillForm(data);
+          setSelectedNote(data);
           removeAnimation();
         });
     }
@@ -416,7 +287,7 @@ const App = () => {
       applyBodyClass("logged-in");
       getAndRenderNotes();
       getPrimaryDomain();
-      formContainer.addEventListener("submit", updateOrCreateNote);
+      formContainer.addEventListener("submit", updateNote);
     } else {
       console.log("user is logged out");
       applyBodyClass("logged-out");
@@ -445,9 +316,9 @@ const App = () => {
     window.netlifyIdentity.on("login", () => {
       console.log("user logged in");
       applyBodyClass("logged-in");
-      getAndRenderNotes();
+      getNote();
       getPrimaryDomain();
-      formContainer.addEventListener("submit", updateOrCreateNote);
+      formContainer.addEventListener("submit", updateNote);
     });
 
     window.netlifyIdentity.on("logout", () => {

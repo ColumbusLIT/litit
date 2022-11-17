@@ -34,18 +34,9 @@ const handler = async (event, context) => {
       }),
     };
   }
-  /* no id, no go */
-  if (!id) {
-    return {
-      statusCode: 401,
-      body: JSON.stringify({
-        data: "no id",
-      }),
-    };
-  }
 
   try {
-    const query = `*[_id == "${id}"]{title, content, image, domain, preset, status, dateFrom, dateTo, user, _updatedAt, _id}`;
+    const query = `*[_type=="note" && references($uId)]{title, content, image, domain, preset, status, dateFrom, dateTo, belongsTo->, _updatedAt, _id}`;
 
     let notes;
 
@@ -60,6 +51,7 @@ const handler = async (event, context) => {
           status: n.status,
           dateFrom: n.dateFrom,
           dateTo: n.dateTo,
+          belongsTo: n.belongsTo,
           updated: n._updatedAt,
           id: n._id,
         };
