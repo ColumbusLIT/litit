@@ -459,4 +459,5 @@ const App = () => {
 };
 
 // attach app to global scope
+App()
 window.litit = App;
