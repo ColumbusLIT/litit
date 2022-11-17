@@ -424,6 +424,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
       window.netlifyIdentity.currentUser(),
       theUserId()
     );
+    applyBodyClass("logged-in");
+    getAndRenderNotes();
+    setPrimaryDomain();
+    formContainer.addEventListener("submit", updateOrCreateNote);
   });
 
   window.netlifyIdentity.on("login", () => {
