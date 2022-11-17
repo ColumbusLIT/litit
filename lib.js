@@ -401,6 +401,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
   if (theUserId()) {
     console.log("user is logged in");
     applyBodyClass("logged-in");
+    getAndRenderNotes();
+    setPrimaryDomain();
+    formContainer.addEventListener("submit", updateOrCreateNote);
   } else {
     console.log("user is logged out");
     applyBodyClass("logged-out");
@@ -424,10 +427,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
       window.netlifyIdentity.currentUser(),
       theUserId()
     );
-    applyBodyClass("logged-in");
-    getAndRenderNotes();
-    setPrimaryDomain();
-    formContainer.addEventListener("submit", updateOrCreateNote);
   });
 
   window.netlifyIdentity.on("login", () => {
