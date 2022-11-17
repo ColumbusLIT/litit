@@ -327,6 +327,9 @@ ul {
 
 .message {
   display: none;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
 }
 body.logged-in .landing-page {
   display: none;
@@ -339,7 +342,7 @@ body:not(.logged-in) .account {
   display: none;
 }
 body.logged-in.no-note .message {
-  display: block;
+  display: flex;
 }
 
 /* Netlify Identity */

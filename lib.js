@@ -5,6 +5,7 @@ let titleField,
   statusField,
   domainField,
   domainLink,
+  messageContainer,
   formContainer;
 
 const ERRORS = {
@@ -71,7 +72,7 @@ const getNote = async () => {
           document.querySelector("body").classList.remove("no-note");
         } else {
           document.querySelector("body").classList.add("no-note");
-          alert("Please contact your administrator to verify your account. Reload page to see result");
+          messageContainer.innerHTML = `<p>Please contact our support team to verify your account. Or try to reload this page.</p>`;
         }
         removeAnimation();
       });
@@ -153,6 +154,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   domainField = document.getElementById("domain");
   domainLink = document.getElementById("domain-link");
   formContainer = document.getElementById("form");
+  messageContainer = document.getElementById("message");
 
   if (theUserId()) {
     console.log("user is logged in");
