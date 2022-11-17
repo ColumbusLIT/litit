@@ -278,7 +278,7 @@ async function getNote(e, overwriteId) {
   if (overwriteId) {
     id = overwriteId;
   } else 
-  if (e.target) {
+  if (e) {
     id = e.target.dataset.editId;
   }
   else {
