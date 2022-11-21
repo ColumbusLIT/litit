@@ -55,7 +55,14 @@
         <form class="form" id="form" data-note-id="">
           <div class="account-header">
             <div>My notification box</div>
-            <button type="submit" class="button--save">SAVE</button>
+            <div class="actions">
+              <select id="status">
+                <option value="published" selected>Published</option>
+                <option value="draft">Draft</option>
+                <option value="archived">Archived</option>
+              </select>
+              <button type="submit" class="button--save">Update</button>
+            </div>
           </div>
           <div class="account-body">
             <nav class="menu">
@@ -108,21 +115,11 @@
                 <option value="unstyled">Unstyled</option>
               </select>
             </label>
-            <label>
-              <span class="label-name">Status</span>
-              <select id="status">
-                <option value="published" selected>Published</option>
-                <option value="draft">Draft</option>
-                <option value="archived">Archived</option>
-              </select>
-            </label>
-            
           </div>
         </form>
       </section>
 
-      <section id="message" class="message">
-      </section>
+      <section id="message" class="message"></section>
     </main>
 
     <div id="animation">

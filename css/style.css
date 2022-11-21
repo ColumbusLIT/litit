@@ -203,7 +203,7 @@ textarea:valid {
 }
 
 button {
-  padding: 0.5rem;
+  padding: 0.5rem 2rem;
   border-radius: 2px;
   color: var(--light-100);
   font-weight: bold;
@@ -225,6 +225,32 @@ button.button--delete {
 }
 button.button--delete:hover {
   background-color: var(--error-hover);
+}
+
+/* Actions */
+.actions {
+  border: 1px solid var(--grey-100);
+  border-radius: .25rem;
+  background-color: var(--grey-50);
+  padding: .5rem;
+  display: flex;
+  justify-content: center;
+}
+[data-note-status="published"] .actions {
+  border-color: var(--success-100);
+  background-color: var(--success-50);
+}
+[data-note-status="draft"] .actions {
+  border-color: var(--warning-100);
+  background-color: var(--warning-50);
+}
+[data-note-status="archived"] .actions {
+  border-color: var(--info-100);
+  background-color: var(--info-50);
+}
+.actions select {
+  margin-bottom: 0;
+  margin-right: 1rem;
 }
 
 /* Legacy from her down */
@@ -255,7 +281,7 @@ ul {
   /* letter-spacing: 0.05rem; */
   font-size: 1rem;
   border-bottom: 1px solid var(--grey-200);
-  padding: 1rem 0;
+  padding: .5rem 0;
   width: var(--content-width);
   margin: 0 auto;
   align-items: center;
@@ -330,7 +356,18 @@ ul {
   align-items: center;
   justify-content: center;
   min-height: 50vh;
+  flex-direction: column;
+  padding: 5rem 0;
+  width: var(--form-width);
+  margin: 0 auto;
 }
+.message img {
+  width: 100%;
+}
+.message p {
+  font-size: 1.5rem;
+}
+
 body.logged-in .landing-page {
   display: none;
 }

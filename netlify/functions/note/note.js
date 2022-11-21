@@ -13,6 +13,15 @@ const client = sanityClient({
 const handler = async (event, context) => {
   const id = event.queryStringParameters.id;
 
+  if(!context.clientContext.user) {
+    return {
+      statusCode: 401,
+      body: JSON.stringify({
+        data: "no user session",
+      }),
+    };
+  }
+  
   const uId = context.clientContext.user.sub
   const uRoles = context.clientContext.user.app_metadata.roles
   

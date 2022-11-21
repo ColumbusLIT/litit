@@ -11,6 +11,8 @@ let titleField,
 const ERRORS = {
   SessionExpired: "SesssionExpired",
   UnknownError: "UnknownError",
+  Unauthorized: "Unauthorized",
+  AccessDenied: "AccessDenied"
 };
 
 const NOTE_STATUS = {
@@ -47,6 +49,7 @@ const fillForm = (note) => {
   domainLink.href = `https://${note.domain}`;
   statusField.value = note.status;
   formContainer.dataset.noteId = note._id;
+  formContainer.dataset.noteStatus = note.status;
 };
 
 /**
@@ -63,7 +66,20 @@ const getNote = async () => {
       },
     })
       .then((response) => {
-        return response.json();
+        if (response.status === 200) {
+          return response.json();
+        }
+        /* Errors */
+        if (response.status === 403) {
+          throw new Error(ERRORS.AccessDenied);
+        } 
+        if (response.status === 401){
+          throw new Error(ERRORS.Unauthorized);
+        }
+        else {
+          console.error(JSON.stringify(response));
+          throw new Error(ERRORS.UnknownError);
+        }
       })
       .then((data) => {
         console.log(data);
@@ -72,8 +88,21 @@ const getNote = async () => {
           document.querySelector("body").classList.remove("no-note");
         } else {
           document.querySelector("body").classList.add("no-note");
-          messageContainer.innerHTML = `<p>Please contact our support team to verify your account. Or try to reload this page.</p>`;
+          messageContainer.innerHTML = `<p>Please contact our <a href="mailto:support@lit-it.at">support team</a> to verify your account. Or try to reload this page.</p><img src="images/illustration-contact-us.svg" alt="contact us" />`;
         }
+      }).catch((error) => {
+        document.querySelector("body").classList.add("litit--no-notes");
+        if (error === ERRORS.SessionExpired || error === ERRORS.Unauthorized) {
+          alert("Your session expired. Please, login again.");
+          window.netlifyIdentity.logout();
+        }
+        if (error === ERRORS.UnknownError) {
+          alert(
+            "Unknown Error. Try reloading the page or login out and in again."
+          );
+        }
+      })
+      .finally(() => {
         removeAnimation();
       });
   }
@@ -100,7 +129,6 @@ const updateNote = async (e) => {
       removeAnimation();
 
       if (r.ok) {
-        // TODO: Clear
         getNote();
       }
       if (!r.ok) {
