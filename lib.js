@@ -93,10 +93,11 @@ const getNote = async () => {
       }).catch((error) => {
         document.querySelector("body").classList.add("litit--no-notes");
         if (error.message === ERRORS.SessionExpired || error.message === ERRORS.Unauthorized) {
-          alert("Your session expired. Please, login again.");
+          messageContainer.innerHTML = `<h2>Session expired.</h2> <p>Login again, please.</p><img src="images/illustration-sunset.svg" alt="logout" />`;
           window.netlifyIdentity.logout();
         }
         if (error.message === ERRORS.UnknownError) {
+          messageContainer.innerHTML = `<h2>An unknown occured.</h2> <p>Try reloading the page or login out and in again.</p><img src="images/illustration-massage.svg" alt="Unknown error." />`;
           alert(
             "Unknown Error. Try reloading the page or login out and in again."
           );
