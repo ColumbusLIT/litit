@@ -92,11 +92,11 @@ const getNote = async () => {
         }
       }).catch((error) => {
         document.querySelector("body").classList.add("litit--no-notes");
-        if (error === ERRORS.SessionExpired || error === ERRORS.Unauthorized) {
+        if (error.message === ERRORS.SessionExpired || error.message === ERRORS.Unauthorized) {
           alert("Your session expired. Please, login again.");
           window.netlifyIdentity.logout();
         }
-        if (error === ERRORS.UnknownError) {
+        if (error.message === ERRORS.UnknownError) {
           alert(
             "Unknown Error. Try reloading the page or login out and in again."
           );
