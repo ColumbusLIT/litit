@@ -12,7 +12,7 @@ const ERRORS = {
   SessionExpired: "SesssionExpired",
   UnknownError: "UnknownError",
   Unauthorized: "Unauthorized",
-  AccessDenied: "AccessDenied"
+  AccessDenied: "AccessDenied",
 };
 
 const NOTE_STATUS = {
@@ -72,11 +72,10 @@ const getNote = async () => {
         /* Errors */
         if (response.status === 403) {
           throw new Error(ERRORS.AccessDenied);
-        } 
-        if (response.status === 401){
-          throw new Error(ERRORS.Unauthorized);
         }
-        else {
+        if (response.status === 401) {
+          throw new Error(ERRORS.Unauthorized);
+        } else {
           console.error(JSON.stringify(response));
           throw new Error(ERRORS.UnknownError);
         }
@@ -90,11 +89,15 @@ const getNote = async () => {
           document.querySelector("body").classList.add("no-note");
           messageContainer.innerHTML = `<p>Please contact our <a href="mailto:support@lit-it.at">support team</a> to verify your account. Or try to reload this page.</p><img src="images/illustration-contact-us.svg" alt="contact us" />`;
         }
-      }).catch((error) => {
+      })
+      .catch((error) => {
         document.querySelector("body").classList.add("litit--no-notes");
-        if (error.message === ERRORS.SessionExpired || error.message === ERRORS.Unauthorized) {
+        if (
+          error.message === ERRORS.SessionExpired ||
+          error.message === ERRORS.Unauthorized
+        ) {
           messageContainer.innerHTML = `<h2>Session expired.</h2> <p>Login again, please.</p><img src="images/illustration-sunset.svg" alt="logout" />`;
-          window.netlifyIdentity.logout();
+          setTimeout(() => window.netlifyIdentity.logout(), 2000);
         }
         if (error.message === ERRORS.UnknownError) {
           messageContainer.innerHTML = `<h2>An unknown occured.</h2> <p>Try reloading the page or login out and in again.</p><img src="images/illustration-massage.svg" alt="Unknown error." />`;
@@ -187,12 +190,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
   if (theUserId()) {
     console.log("user is logged in");
-    document.querySelector('body').classList.add("logged-in");
+    document.querySelector("body").classList.add("logged-in");
     getNote();
     formContainer.addEventListener("submit", updateNote);
   } else {
     console.log("user is logged out");
-    document.querySelector('body').classList.remove("logged-in");
+    document.querySelector("body").classList.remove("logged-in");
   }
 
   removeAnimation();
