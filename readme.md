@@ -1,4 +1,4 @@
-# Easy Notification System
+# Lit IT
 
 This app uses a Netlify identity user to sign up, log in, and securely read and write data scoped to their user in a private Sanity datastore. 
 
@@ -9,16 +9,12 @@ This app uses a Netlify identity user to sign up, log in, and securely read and 
 1. Front End User signs up with [Netlify identity widget](https://github.com/netlify/netlify-identity-widget) and confirms their email
 2. Front end user gets a token, and at the same time netlify sends the new user's id to Sanity.  Sanity creates a document mapped to the Netlify user by id. 
 
-![signup diagram](/images/signing_up.png)
-
 ### Reading and Writing User-Scoped Data
 
 1. Front End requests the users stuff, presenting token to netlify function
 2. Netlify (with Sanity key in server-side ENV var) uses user info in token and queries Sanity for the user's data
 3. Sanity sends the user's stuff  back to a serverless function
 4. The serverless function returns it to the browser
-
-![fetching data diagram](/images/fetching_data.png)
 
 ### Some Details
 
