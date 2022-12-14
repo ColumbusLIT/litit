@@ -429,7 +429,7 @@ body.logged-in.no-note .message {
     flex-direction: column;
   }
   .netlify-identity-user-details {
-    display: none;
+    display: none !important;
   }
 }
 
