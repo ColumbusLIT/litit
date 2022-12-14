@@ -428,6 +428,9 @@ body.logged-in.no-note .message {
   .account-body {
     flex-direction: column;
   }
+  .netlify-identity-user-details {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 479px) {
