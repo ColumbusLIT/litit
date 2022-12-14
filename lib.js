@@ -1,4 +1,4 @@
-import { getQueryString } from "./app/util.js";
+import { getQueryString, initChangeDetection } from "./app/util.js";
 let titleField,
   contentField,
   presetField,
@@ -50,6 +50,7 @@ const fillForm = (note) => {
   statusField.value = note.status;
   formContainer.dataset.noteId = note._id;
   formContainer.dataset.noteStatus = note.status;
+  initChangeDetection(formContainer)
 };
 
 /**
