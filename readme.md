@@ -26,4 +26,4 @@ This is for demonstration purposes, so it has some slow, but simple-on-the-brain
 
 ## Where's the Sanity part? 
 
-You find schemas for Sanity studio [here](https://github.com/lit-it/easy-notification-system-data).
+You find schemas for Sanity studio [here](https://github.com/mandymozart/litit/tree/master/sanity).
