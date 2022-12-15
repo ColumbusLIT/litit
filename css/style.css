@@ -132,6 +132,7 @@ footer {
   padding: 4rem;
   text-align: center;
 }
+/* Layout Elements */
 section {
   margin: 0 auto;
   padding: 0 1rem;
@@ -140,7 +141,7 @@ section {
 
 .hero {
   display: flex;
-  height: 60vh;
+  min-height: 60vh;
   align-items: center;
   gap: 5rem;
   justify-content: center;
@@ -156,6 +157,8 @@ section {
 .hero img {
   max-width: 40vw;
 }
+
+/* Form Elements */
 
 label {
   display: flex;
@@ -205,7 +208,7 @@ textarea:valid {
   /* border: 1px solid var(--success-500); */
 }
 
-button {
+button, .button {
   padding: 0.5rem 2rem;
   border-radius: 2px;
   color: var(--light-100);
@@ -218,7 +221,7 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+button:hover, .button:hover {
   background-color: var(--primary-hover);
   transition: 0.2s;
 }
