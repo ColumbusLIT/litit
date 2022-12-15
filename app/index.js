@@ -1,4 +1,4 @@
-import { getQueryString, initChangeDetection } from "./app/util.js";
+import { getQueryString, initChangeDetection } from "./util.js";
 let titleField,
   contentField,
   presetField,
