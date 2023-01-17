@@ -1,166 +1,414 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="IT Begleitung für jede Unternehmensgröße, LIT IT Technische Begleitung, Innovative Produkte, Digitalisierungsmaßnahmen, Leichtigkeit in Prozessen">
+    <meta name="author" content="LIT IT e.U.">
+
+    <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
+	<meta property="og:site_name" content="" /> <!-- website name -->
+	<meta property="og:site" content="" /> <!-- website link -->
+	<meta property="og:title" content=""/> <!-- title shown in the actual shared post -->
+	<meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
+	<meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
+	<meta property="og:url" content="" /> <!-- where do you want your post to link to -->
+	<meta property="og:type" content="article" />
+
+    <!-- Website Title -->
     <title>LIT IT e.U.</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-
-    <!-- <link rel="stylesheet" href="css/colors.css" />
-    <link rel="stylesheet" href="css/elements.css" /> -->
-
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body class="no-note">
-    <div class="notification">
-      <span
-        >Beta Version. Please feel free to contact us for any bugs you
-        encounter.</span
-      >
-    </div>
-
-    <header>
-      <div>
-        <a class="page-title" href="/"
-          ><img class="logo" src="images/litit.png" alt="icon"
-        /></a>
-        <nav class="menu hide-md">
-          <a href="#HowItWorks" class="active">How it works</a>
-          <a href="/demo">Demo</a>
-        </nav>
-        <div class="badge">
-          <div class="data-netlify" data-netlify-identity-menu></div>
+    
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/fontawesome-all.css" rel="stylesheet">
+    <link href="assets/css/swiper.css" rel="stylesheet">
+	<link href="assets/css/magnific-popup.css" rel="stylesheet">
+	<link href="assets/css/styles.css" rel="stylesheet">
+	
+	<!-- Favicon  -->
+    <link rel="icon" href="images/favicon.jpg">
+</head>
+<body data-spy="scroll" data-target=".fixed-top">
+    
+    <!-- Preloader -->
+	<div class="spinner-wrapper">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
         </div>
-      </div>
-    </header>
-
-    <main class="app">
-      <div class="landing-page">
-        <section class="hero">
-          <div>
-            <h1>
-              LIT IT e.U.<br /><br />Lösungen für<br /><span id="js-rotating"
-                >Ihre Praxis., Ihre Kanzlei., Ihren Betrieb., alle!</span
-              >
-            </h1>
-            <p>
-              LIT IT e.U. bringt mit innovativen Lösungen mehr Leichtigkeit in
-              Ihr Leben. Wir freuen uns auf Ihr Anliegen!
-            </p>
-            <a class="button" href="#contact"> KONTAKT</a>
-            <a class="button" href="#Mehr"> MEHR ÜBER UNS</a>
-          </div>
-          <div>
-            <img src="images/Affected from coronavirus.svg" alt="We care" />
-          </div>
-        </section>
-        <section id="Mehr">
-          <div>
-            <h1>Innovation umsetzen</h1>
-            <p>
-              Wir von LIT IT setzen um. Technologie innovativ & kreativ
-              einzusetzen, um wertvolle Zeitresourcen frei zu bekommen, zählt zu
-              unseren stärken.
-            </p>
-            <button>GET STARTED</button>
-          </div>
-          <div>
-            <img src="images/Affected from coronavirus.svg" alt="We care" />
-          </div>
-        </section>
-      </div>
-
-      <section class="account">
-        <form class="form" id="form" data-note-id="">
-          <div class="account-header">
-            <div>My notification box</div>
-            <div class="actions">
-              <select id="status">
-                <option value="published" selected>Published</option>
-                <option value="draft">Draft</option>
-                <option value="archived">Archived</option>
-              </select>
-              <button type="submit" class="button--save">Update</button>
-            </div>
-          </div>
-          <div class="account-body">
-            <nav class="menu">
-              <div id="notes">
-                <!-- notes get rendered here -->
-              </div>
-            </nav>
-            <label>
-              <span class="label-name">Domain</span
-              ><a
-                class="label-description"
-                href="https://acme.com"
-                target="_blank"
-                id="domain-link"
-                >Visit</a
-              >
-              <input
-                type="text"
-                id="domain"
-                name="domain"
-                minlength="5"
-                maxlength="50"
-                readonly
-                value=""
-                required
-                pattern="^(([a-zA-Z]{1})|([a-zA-Z]{1}[a-zA-Z]{1})|([a-zA-Z]{1}[0-9]{1})|([0-9]{1}[a-zA-Z]{1})|([a-zA-Z0-9][a-zA-Z0-9-_]{1,61}[a-zA-Z0-9]))\.([a-zA-Z]{2,6}|[a-zA-Z0-9-]{2,30}\.[a-zA-Z]{2,3})$"
-                placeholder="acme.com"
-              />
-            </label>
-            <label>
-              <span class="label-name">Title</span>
-              <input
-                type="text"
-                id="title"
-                name="title"
-                maxlength="40"
-                value=""
-                required
-                placeholder="Title"
-              />
-            </label>
-            <label>
-              <span class="label-name">Content</span>
-              <textarea id="content" rows="6" required></textarea>
-            </label>
-            <label class="select" for="preset">
-              <span class="label-name">Preset</span>
-              <select id="preset">
-                <option value="default">Default</option>
-                <option value="unstyled">Unstyled!</option>
-              </select>
-            </label>
-          </div>
-        </form>
-      </section>
-
-      <section id="message" class="message"></section>
-    </main>
-
-    <div id="animation">
-      <div class="spinner spinner-xxl"></div>
     </div>
+    <!-- end of preloader -->
+    
 
-    <footer>
-      <div>&copy; 2022 LIT IT</div>
-    </footer>
-    <script
-      type="text/javascript"
-      src="https://identity.netlify.com/v1/netlify-identity-widget.js"
-    ></script>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top">
+        <!-- Text Logo - Use this if you don't have a graphic logo -->
+        
 
-    <script src="app/state.js" type="module"></script>
+        <!-- Image Logo -->
+        <a class="navbar-brand logo-image" href="index.html"><img src="assets/images/LIT IT Logo.jpg" alt="alternative"></a> 
+        
+        <!-- Mobile Menu Toggle Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-awesome fas fa-bars"></span>
+            <span class="navbar-toggler-awesome fas fa-times"></span>
+        </button>
+        <!-- end of mobile menu toggle button -->
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#header">HOME <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#Mehr">LIT Note</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#download">NEUES</a>
+                </li>
+
+                <!-- Dropdown Menu -->          
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle page-scroll" href="#details" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">MEHR</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="terms-conditions.html"><span class="item-text">AGBs</span></a>
+                        <div class="dropdown-items-divide-hr"></div>
+                        <a class="dropdown-item" href="privacy-policy.html"><span class="item-text">DATENSCHUTZ</span></a>
+                    </div>
+                </li>
+                <!-- end of dropdown menu -->
+
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#contact">KONTAKT</a>
+                </li>
+            </ul>
+            <span class="nav-item social-icons">
+                <span class="fa-stack">
+                    <a href="#your-link">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-facebook-f fa-stack-1x"></i>
+                    </a>
+                </span>
+                <span class="fa-stack">
+                    <a href="#your-link">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-twitter fa-stack-1x"></i>
+                    </a>
+                </span>
+            </span>
+        </div>
+    </nav> <!-- end of navbar -->
+    <!-- end of navbar -->
 
 
-    <script src="app/index.js" type="module"></script>
+    <!-- Header -->
+    <header id="header" class="header">
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="text-container">
+                            <h1>LIT IT e.U.<br><br>Lösungen für<br><span id="js-rotating">Ihre Praxis., Ihre Kanzlei., Ihren Betrieb., alle!</span></h1>
+                            <p class="p-large">LIT IT e.U. bringt mit innovativen Lösungen mehr Leichtigkeit in Ihr Leben. Wir freuen uns auf Ihr Anliegen!</p>
+                            <a class="btn-solid-lg page-scroll" href="#contact"><i class="fas fa-envelope"></i> KONTAKT</a>
+                            <a class="btn-solid-lg page-scroll" href="#Mehr"><i class="fas fa-code"></i> MEHR ÜBER UNS</a>
+                        </div>
+                    </div> <!-- end of col -->
+                    <div class="col-lg-6">
+                        <div class="image-container">
+                            <img class="img-fluid" src="images/TaeAugust11.jpg" alt="alternative">
+                        </div> <!-- end of image-container -->
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of header-content -->
+    </header> <!-- end of header -->
+    <!-- end of header -->
 
 
-  </body>
+    <!-- Testimonials -->
+    
+    <!-- end of testimonials -->
+    
+
+    <!-- Features -->
+    
+    <!-- end of features -->
+
+
+    <!-- Video -->
+    
+    <!-- end of video -->
+
+
+    <!-- Details 1 -->
+    <div id="Mehr" class="basic-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <img class="img-fluid" src="images/Call center manager taking calls.jpg" alt="alternative">
+                </div> <!-- end of col -->
+                <div class="col-lg-6">
+                    <div class="text-container">
+                        <h3>Innovation umsetzen</h3>
+                        <p>Wir von LIT IT setzen um. Technologie innovativ & kreativ einzusetzen, um wertvolle Zeitresourcen frei zu bekommen, zählt zu unseren stärken. </p>
+                        <a class="btn-solid-reg" href="/notes">MEHR ZU LIT Note</a>
+                    </div> <!-- end of text-container -->
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of basic-2 -->
+    <!-- end of details 1 -->
+
+
+    <!-- Details 2 -->
+    <div class="basic-3">
+        <div class="second">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="text-container">
+                            <h3>IT Begleitung</h3>
+                            <p>Wir helfen Ihnen bei der Lösungsfindung. Neue Wege zu gehen, neue Technologien einzusetzen oder Prozesse zu optimieren um gebundene Resourcen frei zu bekommen.</p>
+                            <a class="btn-solid-reg popup-with-move-anim" href="#details-lightbox-2">MEHR ERFAHREN</a>
+                        </div> <!-- end of text-container -->
+                    </div> <!-- end of col -->
+                    <div class="col-lg-6">
+                        <img class="img-fluid2" src="images/sales concept illustration.jpg" alt="alternative">
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of second -->
+    </div> <!-- end of basic-3 -->    
+    <!-- end of details 2 -->
+
+
+    <!-- Details Lightboxes -->
+	<!-- Lightbox -->
+	<div id="details-lightbox-1" class="lightbox-basic zoom-anim-dialog mfp-hide">
+		<div class="row">
+			<button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
+			<div class="col-lg-6">
+				<img class="img-fluid" src="images/TaeAugust11.jpg" alt="alternative">
+			</div>
+			<div class="col-lg-6">
+				<h3>LIT Note</h3>
+				<hr>
+                <p>Einfache Registrierung, maximaler Nutzen für Sie und Ihre Kunden.</p>
+                <h4>Wir sagen</h4>
+                <p>Durch geschickten Einsatz von aktuelle Technologien, schaffen wir es mit Leichtigkeit, Prozesse zu optimieren.</p>
+                <p>Teilen Sie ihre Inhalte, auf Ihrer Website, von überall & zu jederzeit.</p>
+				<table>
+					<tr><td class="icon-cell"><i class="fas fa-desktop"></i></td><td>Responsive layout</td></tr>
+					<tr><td class="icon-cell"><i class="fas fa-bullhorn"></i></td><td>Distinctive CTAs</td></tr>
+					<tr><td class="icon-cell"><i class="fas fa-image"></i></td><td>Image gallery slider</td></tr>
+					<tr><td class="icon-cell"><i class="fas fa-envelope"></i></td><td>Contact forms</td></tr>
+					<tr><td class="icon-cell"><i class="fab fa-font-awesome-flag"></i></td><td>FontAwesome icons</td></tr>
+					<tr><td class="icon-cell"><i class="fas fa-code"></i></td><td>Well-structured code</td></tr>
+				</table>
+				<a class="btn-solid-reg" href="#your-link">DETAILS</a> <a class="btn-outline-reg mfp-close as-button" href="#details">ZURÜCK</a> 
+			</div>
+		</div> <!-- end of row -->
+    </div> <!-- end of lightbox-basic -->
+    <!-- end of lightbox -->
+    
+    <!-- Lightbox -->
+    <div id="details-lightbox-2" class="lightbox-basic zoom-anim-dialog mfp-hide">
+		<div class="row">
+			<button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
+			<div class="col-lg-6">
+				<img class="img-fluid" src="images/maturity_stage_4.jpg" alt="alternative">
+			</div>
+			<div class="col-lg-6">
+				<h3>IT Begleitung</h3>
+				<hr>
+                <p>LIT IT begleitet Sie. Ein starker Partner mit Erfahrung hilft meistens weiter.</p>
+                <h4>Wir meinen</h4>
+                <p>Chancen nutzen heißt es. Wir freuen uns über Ihr Anliegen.</p>
+                <p>Wir haben Ehrfahrung mit</p>
+				<table>
+					<tr><td class="icon-cell"><i class="fas fa-desktop"></i></td><td>Responsive layout</td></tr>
+					<tr><td class="icon-cell"><i class="fas fa-bullhorn"></i></td><td>Distinctive CTAs</td></tr>
+					<tr><td class="icon-cell"><i class="fas fa-image"></i></td><td>Image gallery slider</td></tr>
+					<tr><td class="icon-cell"><i class="fas fa-envelope"></i></td><td>Contact forms</td></tr>
+					<tr><td class="icon-cell"><i class="fab fa-font-awesome-flag"></i></td><td>FontAwesome icons</td></tr>
+					<tr><td class="icon-cell"><i class="fas fa-code"></i></td><td>Well-structured code</td></tr>
+				</table>
+				<a class="btn-solid-reg" href="#your-link">DETAILS</a> <a class="btn-outline-reg mfp-close as-button" href="#details">BACK</a>
+			</div>
+		</div> <!-- end of row -->
+    </div> <!-- end of lightbox-basic -->
+    <!-- end of lightbox -->
+    <!-- end of details lightboxes -->
+
+
+    <!-- Screenshots -->
+    
+    <!-- end of screenshots -->
+
+
+    <!-- Download -->
+    <div id="download" class="basic-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-xl-5">
+                    <div class="text-container">
+                        <h2>Hier entsteht <span class="blue">NEUES!</span></h2>
+                        <p class="p-large">Wir erwitern unsere Geschäftsfelder laufend. </p>
+                        <a class="btn-solid-lg" href="#your-link"><i class="fas fa-code"></i> IN</a>
+                        <a class="btn-solid-lg" href="#your-link"><i class="fas fa-code"></i> BAU</a>
+                    </div> <!-- end of text-container -->
+                </div> <!-- end of col -->
+                <div class="col-lg-6 col-xl-7">
+                    <div class="image-container">
+                        <img class="img-fluid" src="images/bot.jpg" alt="alternative">
+                    </div> <!-- end of img-container -->
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of basic-4 -->
+    <!-- end of download -->
+
+
+    <!-- Statistics -->
+   
+    <!-- end of statistics -->
+
+
+    <!-- Contact -->
+    <div id="contact" class="form">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>KONTAKT</h2><br<><br>
+                    <ul class="list-unstyled li-space-lg">
+                        <li class="address">Wir freuen uns über Ihre Nachricht! <br><br>Nutzen Sie einfach unser Kontaktformular oder senden Sie uns eine E-Mail.</li>
+                        <br>
+                        <li><i class="fas fa-envelope"></i><a class="blue" href="mailto:info@lit-it.at">info@lit-it.at</a></li>
+                    </ul>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    
+                    <!-- Contact Form -->
+                    <form id="contactForm" data-toggle="validator" data-focus="false">
+                        <div class="form-group">
+                            <input type="text" class="form-control-input" id="cname" required>
+                            <label class="label-control" for="cname">Name</label>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control-input" id="cemail" required>
+                            <label class="label-control" for="cemail">Email</label>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control-textarea" id="cmessage" required></textarea>
+                            <label class="label-control" for="cmessage">Ihre Nachricht</label>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group checkbox">
+                            <input type="checkbox" id="cterms" value="Agreed-to-Terms" required>I have read and agree to LIT IT's stated conditions in <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms-conditions.html">Terms Conditions</a> 
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="form-control-submit-button">Nachricht senden</button>
+                        </div>
+                        <div class="form-message">
+                            <div id="cmsgSubmit" class="h3 text-center hidden"></div>
+                        </div>
+                    </form>
+                    <!-- end of contact form -->
+
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of form -->
+    <!-- end of contact -->
+
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-col">
+                        <h4>Über LIT IT e.U.</h4>
+                        <p>Für uns ist Zeit das wichtigste, daher sollten wir Chancen nutzen, lassen Sie uns zusammenarbeiten.</p>
+                    </div>
+                </div> <!-- end of col -->
+                <div class="col-md-4">
+                    <div class="footer-col middle">
+                        <h4>Wichtige Links</h4>
+                        <ul class="list-unstyled li-space-lg">
+                            <li class="media">
+                                <i class="fas fa-square"></i>
+                                <div class="media-body">Unsere Partner <a class="turquoise" href="#your-link">startupguide.com</a></div>
+                            </li>
+                            <li class="media">
+                                <i class="fas fa-square"></i>
+                                <div class="media-body">Lesen Sie unsere <a class="turquoise" href="terms-conditions.html">Terms & Conditions</a>, <a class="turquoise" href="privacy-policy.html">Privacy Policy</a></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div> <!-- end of col -->
+                <div class="col-md-4">
+                    <div class="footer-col last">
+                        <h4>Social Media</h4>
+                        <span class="fa-stack">
+                            <a href="#your-link">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-facebook-f fa-stack-1x"></i>
+                            </a>
+                        </span>
+                        <span class="fa-stack">
+                            <a href="#your-link">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-instagram fa-stack-1x"></i>
+                            </a>
+                        </span>
+                        <span class="fa-stack">
+                            <a href="#your-link">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin-in fa-stack-1x"></i>
+                            </a>
+                        </span>
+                    </div> 
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of footer -->  
+    <!-- end of footer -->
+
+
+    <!-- Copyright -->
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="p-small">LIT IT / 2022</p>
+                </div> <!-- end of col -->
+            </div> <!-- enf of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of copyright --> 
+    <!-- end of copyright -->
+    
+    	
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="assets/js/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
+    <script src="assets/js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
+    <script src="assets/js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+    <script src="assets/js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
+    <script src="assets/js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
+    <script src="assets/js/morphext.min.js"></script> <!-- Morphtext rotating text in the header -->
+    <script src="assets/js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
+    <script src="assets/js/scripts.js"></script> <!-- Custom scripts -->
+</body>
 </html>
