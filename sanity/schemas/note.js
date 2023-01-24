@@ -36,7 +36,7 @@ export default {
       name: "preset",
       title: "Preset",
       type: "string",
-      initialValue: "default",
+      initialValue: "unstyled",
       validation: Rule => Rule.required(),
       options: {
         list: [
