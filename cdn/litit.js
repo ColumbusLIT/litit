@@ -1,6 +1,6 @@
 // Compose the URL for your project's endpoint and add the query
 let container = document.querySelector("[data-litit]");
-let URL = `https://litit.netlify.app/.netlify/functions/latest-notes?key=${container.dataset.litit}`;
+let URL = `https://lit-it.at/.netlify/functions/latest-notes?key=${container.dataset.litit}`;
 
 function renderNote (data){
   let newNote = document.createElement('div')
