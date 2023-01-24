@@ -19,7 +19,7 @@ function renderNote (data){
   
   let updated = document.createElement("span");
   updated.classList.add(`litit-updated`);
-  updated.innerHTML = dayjs(data.updated).format("D. MMMM YYYY, HH:mm Uhr");
+  updated.innerHTML = dayjs(data.updated).format("D. M. YYYY, HH:mm [Uhr]");
   newNote.append(updated);
   container.appendChild(newNote);
   
