@@ -8,7 +8,7 @@ export default {
       title: "Title",
       type: "string",
       validation: Rule => [
-        Rule.required().min(10).error('A title of min. 3 characters is required'),
+        Rule.required().min(3).error('A title of min. 3 characters is required'),
         Rule.max(50).warning('Shorter titles are usually better')
       ]
     },
