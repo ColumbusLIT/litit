@@ -30,14 +30,33 @@ function renderNote (data){
   container.appendChild(newNote);
 }
 
-// fetch the content
-fetch(URL)
-  .then((res) => res.json())
-  .then((data) => {
-    if(data.length > 0){  
-      data.forEach((note)=>renderNote(note))        
-    } else {
-        console.log ('good. nothing to update atm.')
-    }
-})
-  .catch((err) => console.error(err));
+const app = () => {
+  // fetch the content
+  fetch(URL)
+    .then((res) => res.json())
+    .then((data) => {
+      if(data.length > 0){  
+        data.forEach((note)=>renderNote(note))        
+      } else {
+          console.log ('good. nothing to update atm.')
+      }
+  })
+    .catch((err) => console.error(err));
+}
+
+
+  const loadJS = function(url, implementationCode, location){
+    //url is URL of external file, implementationCode is the code
+    //to be called from the file, location is the location to 
+    //insert the <script> element
+
+    var scriptTag = document.createElement('script');
+    scriptTag.src = url;
+
+    scriptTag.onload = implementationCode;
+    scriptTag.onreadystatechange = implementationCode;
+
+    location.appendChild(scriptTag);
+};
+
+loadJS('https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.6/dayjs.min.js', app, document.body);
