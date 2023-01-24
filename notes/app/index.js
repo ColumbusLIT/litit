@@ -30,7 +30,7 @@ const FUNCTIONS = "/.netlify/functions";
 export const getParams = () => {
   return {
     title: titleField.value.replace(/[^\w\s!?]/g, ""),
-    content: contentField.value.replace(/[^\w\s!?]/g, ""),
+    content: contentField.value.replace(/<(?:"[^"]*"['"]*|'[^']*'['"]*|[^'">])+>/g, ""),
     domain: domainField.value,
     preset: presetField.value,
     status: statusField.value,
