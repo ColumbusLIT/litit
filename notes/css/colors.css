@@ -43,7 +43,7 @@
   --dark-800: #2c2e35;
   --dark-900: #191a1f;
 
-  --primary: rgb(25, 94, 230);
+  --primary: rgb(214, 228, 255);
   --primary-hover: var(--primary-400);
   --primary-active: var(--primary-600);
   --primary-50: #f0f7fe;
