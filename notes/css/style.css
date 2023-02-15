@@ -27,6 +27,11 @@ body {
   color: var(--dark-900);
   background: var(--light-200);
 }
+
+img {
+  max-width: 100%;
+}
+
 p,
 div,
 th,
